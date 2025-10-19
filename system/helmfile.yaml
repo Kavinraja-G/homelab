@@ -11,8 +11,17 @@ helmDefaults:
 repositories:
   - name: metallb
     url: https://metallb.github.io/metallb
+  - name: sealed-secrets
+    url: https://bitnami-labs.github.io/sealed-secrets
 
 releases:
+  - name: kubeseal
+    namespace: kubeseal
+    createNamespace: true
+    chart: sealed-secrets/sealed-secrets
+    version: 2.17.7
+    values:
+      - "./kubeseal/values.yaml"
   - name: metallb
     namespace: metallb
     createNamespace: true
