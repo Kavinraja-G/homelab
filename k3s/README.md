@@ -4,7 +4,7 @@ K3s installation in my homelab servers using the default [ansible playbook](http
 ### Setup
 - Generate passwordless access using `ssh` from control machine to the servers
     ```sh
-    ssh-keygen -t ed25519 -C "kavin@homelab"
+    ssh-keygen -t ed25519
     ssh-copy-id -i ~/.ssh/id_ed25519.pub kavin@192.168.0.111
     ssh-copy-id -i ~/.ssh/id_ed25519.pub kavin@192.168.0.110
     ```
