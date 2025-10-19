@@ -1,0 +1,30 @@
+helmDefaults:
+  cleanupOnFail: false
+  diffArgs:
+    - "--suppress-secrets"
+  syncArgs:
+    - "--labels=app.kubernetes.io/managed-by=helmfile"
+  wait: true
+  historyMax: 3
+  createNamespace: false
+
+repositories:
+  - name: metallb
+    url: https://metallb.github.io/metallb
+
+releases:
+  - name: metallb
+    namespace: metallb
+    createNamespace: true
+    chart: metallb/metallb
+    version: 0.15.2
+    values:
+      - "./metallb/values.yaml"
+    hooks:
+      - events: ["postsync"]
+        showlogs: true
+        command: kubectl
+        args:
+          - apply
+          - -f
+          - ./metallb/address_pool.yaml
