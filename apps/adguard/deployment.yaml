@@ -36,7 +36,6 @@ spec:
               echo "Mounting AdGuardHome config file..."
               if [ ! -f "$CONFIG_FILE" ]; then
                 echo "Bootstrapping default config from ConfigMap..."
-                cat /defaults/AdGuardHome.yaml
                 cp /defaults/AdGuardHome.yaml "$CONFIG_FILE"
               else
                 echo "Config already exists, skipping bootstrap."
