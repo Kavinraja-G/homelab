@@ -16,18 +16,55 @@ spec:
       labels:
         app: adguard-home
     spec:
+      nodeSelector:
+        k8s.imkavin.dev/nodepool: control-plane
       initContainers:
         - name: init-config
           image: busybox:1.36
           command: ["/bin/sh", "-c"]
           args:
             - |
-              if [ ! -f /configs/AdGuardHome.yaml ]; then
+              set -e
+              CONFIG_FILE="/configs/AdGuardHome.yaml"
+
+              echo "Installing yq..."
+              mkdir -p /usr/local/bin
+              wget -q -O /usr/local/bin/yq https://github.com/mikefarah/yq/releases/download/v4.44.3/yq_linux_amd64
+              chmod +x /usr/local/bin/yq
+              echo "yq installed: $(yq --version)"
+
+              echo "Mounting AdGuardHome config file..."
+              if [ ! -f "$CONFIG_FILE" ]; then
                 echo "Bootstrapping default config from ConfigMap..."
-                cp /defaults/AdGuardHome.yaml /configs/AdGuardHome.yaml
+                cat /defaults/AdGuardHome.yaml
+                cp /defaults/AdGuardHome.yaml "$CONFIG_FILE"
               else
                 echo "Config already exists, skipping bootstrap."
               fi
+
+              if [ -n "${ADGUARD_USERNAME}" ] && [ -n "${ADGUARD_PASSWORD}" ]; then
+                echo "Injecting credentials..."
+                yq -i '
+                  .users = (
+                    .users // [] |
+                    map(select(.name != strenv(ADGUARD_USERNAME))) +
+                    [{"name": strenv(ADGUARD_USERNAME), "password": strenv(ADGUARD_PASSWORD), "enabled": true}]
+                  )
+                ' "$CONFIG_FILE"
+              else
+                echo "No credentials provided. Skipping user injection."
+              fi
+          env:
+            - name: ADGUARD_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: adguard-credentials
+                  key: username
+            - name: ADGUARD_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: adguard-credentials
+                  key: password
           volumeMounts:
             - name: adguard-storage
               mountPath: /configs

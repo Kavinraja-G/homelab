@@ -6,7 +6,6 @@ metadata:
   namespace: adguard
 data:
   AdGuardHome.yaml: |
-    users: []
     auth_attempts: 5
     block_auth_min: 15
     theme: auto
@@ -51,8 +50,8 @@ data:
       safebrowsing_enabled: false
       protection_enabled: true
       rewrites:
-        - domain: adguard.local
-          answer: 192.168.0.121
+        - domain: adguard.home
+          answer: 192.168.0.120
     log:
       enabled: true
       max_size: 100

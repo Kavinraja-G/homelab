@@ -1,6 +1,7 @@
 resources:
   - namespace.yaml
   - config.yaml
+  - credentials.yaml
   - volumes.yaml
   - deployment.yaml
   - service.yaml
