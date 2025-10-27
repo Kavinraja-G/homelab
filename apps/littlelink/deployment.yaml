@@ -1,0 +1,71 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: littlelink-server
+  name: littlelink-server
+  namespace: littlelink
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: littlelink-server
+  template:
+    metadata:
+      labels:
+        app: littlelink-server
+    spec:
+      containers:
+        - env:
+            - name: AVATAR_2X_URL
+              value: https://avatars.githubusercontent.com/u/62742678?v=4
+            - name: AVATAR_ALT
+              value: Kavin's Profile Pic
+            - name: AVATAR_URL
+              value: https://avatars.githubusercontent.com/u/62742678?v=4
+            - name: BIO
+              value: "Cloud 🌩️ Containers 🐳 what not? 🚀"
+            - name: BUTTON_ORDER
+              value: ABOUT ME,GITHUB,BLOGS,LINKED_IN,CREDLY,SUBSTACK
+            - name: FAVICON_URL
+              value: https://avatars.githubusercontent.com/u/62742678?v=4
+            - name: FOOTER
+              value: Kavin © 2025
+            - name: GITHUB
+              value: https://github.com/Kavinraja-G
+            - name: CREDLY
+              value: https://www.credly.com/users/kavinraja-ganesan
+            - name: SUBSTACK
+              value: https://imkavin.substack.com/
+            - name: LANG
+              value: en
+            - name: LINKED_IN
+              value: https://www.linkedin.com/in/kavinganesan
+            - name: META_AUTHOR
+              value: Kavin
+            - name: META_TITLE
+              value: Kavin
+            - name: NAME
+              value: Kavin
+            - name: THEME
+              value: Dark
+            - name: CUSTOM_BUTTON_ALT_TEXT
+              value: Everything about myself,Personal Blogs
+            - name: CUSTOM_BUTTON_COLOR
+              value: '#1579BD,#096644'
+            - name: CUSTOM_BUTTON_ICON
+              value: fas fa-circle-info,fas fa-blog
+            - name: CUSTOM_BUTTON_NAME
+              value: ABOUT ME,BLOGS
+            - name: CUSTOM_BUTTON_TEXT
+              value: About Me,BLOGS
+            - name: CUSTOM_BUTTON_TEXT_COLOR
+              value: '#ffffff,#ffffff'
+            - name: CUSTOM_BUTTON_URL
+              value: https://codex.imkavin.dev,https://codex.imkavin.dev/blog/
+          image: ghcr.io/timothystewart6/littlelink-server:latest
+          name: littlelink-server
+          ports:
+            - containerPort: 3000
+              protocol: TCP
+      restartPolicy: Always
