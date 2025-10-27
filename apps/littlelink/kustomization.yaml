@@ -1,3 +1,10 @@
+namespace: littlelink
+
+labels:
+  - pairs:
+      homelab.imkavin.dev/app: littlelink-server
+    includeSelectors: false
+
 resources:
   - deployment.yaml
   - service.yaml

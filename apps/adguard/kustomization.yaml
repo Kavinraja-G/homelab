@@ -1,5 +1,11 @@
+namespace: adguard
+
+labels:
+  - pairs:
+      homelab.imkavin.dev/app: adguardhome
+    includeSelectors: false
+
 resources:
-  - namespace.yaml
   - config.yaml
   - credentials.yaml
   - volumes.yaml
