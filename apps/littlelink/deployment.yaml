@@ -62,7 +62,7 @@ spec:
             - name: CUSTOM_BUTTON_TEXT_COLOR
               value: '#ffffff,#ffffff'
             - name: CUSTOM_BUTTON_URL
-              value: https://codex.imkavin.dev,https://codex.imkavin.dev/blog/
+              value: https://imkavin.dev,https://imkavin.dev/blog/
           image: ghcr.io/timothystewart6/littlelink-server:latest
           name: littlelink-server
           ports:
