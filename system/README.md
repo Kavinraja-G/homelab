@@ -1,2 +1,2 @@
 # System components
-All system components installed after K3s cluster setup will go in here.
+All system components installed after K3s cluster setup will go in here. Not everything is deployed via [helmfile](./helmfile.yaml) some are done via [Kustomize](./kustomization.yaml)

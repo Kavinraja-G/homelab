@@ -1,0 +1,73 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: beszel
+  name: beszel-hub
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: beszel
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: beszel
+    spec:
+      containers:
+        - image: henrygd/beszel
+          name: beszel
+          env:
+            - name: USER_EMAIL
+              valueFrom:
+                secretKeyRef:
+                  key: "EMAIL"
+                  name: bezel-creds
+            - name: USER_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: "PASSWORD"
+                  name: bezel-creds
+          ports:
+            - containerPort: 8090
+              protocol: TCP
+          volumeMounts:
+            - mountPath: /beszel_data
+              name: beszel
+      restartPolicy: Always
+      volumes:
+        - name: beszel
+          persistentVolumeClaim:
+            claimName: beszel
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    metallb.io/loadBalancerIPs: 192.168.0.123
+  labels:
+    app: beszel
+  name: beszel
+spec:
+  type: LoadBalancer
+  ports:
+    - name: "8090"
+      port: 8090
+      targetPort: 8090
+  selector:
+    app: beszel
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  labels:
+    app: beszel
+  name: beszel
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi

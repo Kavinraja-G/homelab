@@ -1,0 +1,11 @@
+namespace: monitoring
+
+labels:
+  - pairs:
+      homelab.imkavin.dev/app: bezel-monitoring
+    includeSelectors: false
+
+resources:
+  - secrets.yaml
+  - hub.yaml
+  - agent.yaml

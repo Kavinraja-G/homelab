@@ -148,6 +148,8 @@ data:
       rewrites:
         - domain: adguard.home
           answer: 192.168.0.120
+        - domain: bezel.home
+          answer: 192.168.0.123
       safe_fs_patterns:
         - /opt/adguardhome/work/data/userfilters/*
       safebrowsing_cache_size: 1048576
