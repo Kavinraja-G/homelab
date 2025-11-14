@@ -34,7 +34,15 @@ spec:
           ports:
             - containerPort: 45876
               hostPort: 45876
+          volumeMounts:
+            - mountPath: /beszel_agent_data
+              name: beszel-agent-data
       restartPolicy: Always
+      volumes:
+        - name: beszel-agent-data
+          hostPath:
+            path: /var/lib/beszel-agent
+            type: DirectoryOrCreate
       tolerations:
         - effect: NoSchedule
           key: node-role.kubernetes.io/master
