@@ -1,0 +1,35 @@
+namespace: karakeep
+
+secretGenerator:
+  - envs:
+      - .secrets
+    name: karakeep-secrets
+
+configMapGenerator:
+  - envs:
+      - .config
+    name: karakeep-configuration
+
+resources:
+  - web.yaml
+  - chrome.yaml
+  - meilisearch.yaml
+  - pvc.yaml
+
+replacements:
+  - source:
+      fieldPath: data.KARAKEEP_VERSION
+      kind: ConfigMap
+      name: karakeep-configuration
+      version: v1
+    targets:
+      - fieldPaths:
+          - spec.template.spec.containers.0.image
+        options:
+          delimiter: ":"
+          index: 1
+        select:
+          group: apps
+          kind: Deployment
+          name: web
+          version: v1
