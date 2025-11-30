@@ -1,0 +1,22 @@
+namespace: glance
+
+labels:
+  - pairs:
+      homelab.imkavin.dev/app: glance
+    includeSelectors: false
+
+generatorOptions:
+  disableNameSuffixHash: true
+  labels:
+    app.kubernetes.io/name: glance
+    app.kubernetes.io/instance: glance
+
+configMapGenerator:
+- name: glance-config
+  files:
+    - config/glance.yml
+
+resources:
+  - secrets.yaml
+  - deploy.yaml
+  - agents.yaml

@@ -1,0 +1,93 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: glance
+  labels:
+    app.kubernetes.io/name: glance
+    app.kubernetes.io/instance: glance
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: glance
+      app.kubernetes.io/instance: glance
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: glance
+        app.kubernetes.io/instance: glance
+    spec:
+      securityContext:
+        runAsUser: 65534
+        runAsGroup: 65534
+        seccompProfile:
+          type: "RuntimeDefault"
+      containers:
+        - name: glance
+          image: "docker.io/glanceapp/glance:latest"
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: LINKS_URL
+              value: https://links.imkavin.dev
+            - name: BEZEL_MONITOR_URL
+              value: http://beszel.monitoring.svc.cluster.local:8090
+            - name: KARAKEEP_MONITOR_URL
+              value: http://web.karakeep.svc.cluster.local:3000
+            - name: ADGUARD_HOME_URL
+              value: http://adguard-service.adguard.svc.cluster.local:3000
+            - name: RENGOKU_VPS_IP
+              value: 51.222.110.15
+            - name: ADGUARD_HOME_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  key: ADGUARD_HOME_USERNAME
+                  name: glance-secrets
+            - name: ADGUARD_HOME_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: ADGUARD_HOME_PASSWORD
+                  name: glance-secrets
+            - name: RENGOKU_GLANCE_AGENT_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  key: RENGOKU_GLANCE_AGENT_TOKEN
+                  name: glance-secrets
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            runAsNonRoot: true
+            capabilities:
+              drop: ["ALL"]
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          volumeMounts:
+            - name: glance-config
+              mountPath: /app/config/glance.yml
+              subPath: glance.yml
+      volumes:
+        - name: glance-config
+          configMap:
+            name: glance-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: glance
+  labels:
+    app.kubernetes.io/name: glance
+    app.kubernetes.io/instance: glance
+  annotations:
+    metallb.io/loadBalancerIPs: 192.168.0.126
+spec:
+  type: LoadBalancer
+  selector:
+    app.kubernetes.io/name: glance
+    app.kubernetes.io/instance: glance
+  ports:
+    - name: http
+      port: 80
+      targetPort: 8080
+      protocol: TCP
