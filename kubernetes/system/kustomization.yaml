@@ -1,3 +1,2 @@
 resources:
-  - ./bezel/
-  - ./pangolin
+  - ./kubeseal

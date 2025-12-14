@@ -1,0 +1,9 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: sealed-secrets
+  namespace: kubeseal
+spec:
+  interval: 1h
+  url: https://bitnami-labs.github.io/sealed-secrets/
+  timeout: 5m

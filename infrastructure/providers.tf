@@ -16,6 +16,14 @@ terraform {
       source  = "siderolabs/talos"
       version = "0.9.0"
     }
+    flux = {
+      source  = "fluxcd/flux"
+      version = "1.7.6"
+    }
+    github = {
+      source  = "hashicorp/github"
+      version = "6.9.0"
+    }
   }
 }
 
@@ -46,4 +54,25 @@ provider "restapi" {
     "Content-Type"  = "application/json"
     "Authorization" = "PVEAPIToken=${var.proxmox.api_token}"
   }
+}
+
+provider "flux" {
+  kubernetes = {
+    host                   = module.talos.kube_config.kubernetes_client_configuration.host
+    client_certificate     = base64decode(module.talos.kube_config.kubernetes_client_configuration.client_certificate)
+    client_key             = base64decode(module.talos.kube_config.kubernetes_client_configuration.client_key)
+    cluster_ca_certificate = base64decode(module.talos.kube_config.kubernetes_client_configuration.ca_certificate)
+  }
+  git = {
+    url = "ssh://git@github.com/${var.github.org}/${var.github.repository}.git"
+    ssh = {
+      username    = "git"
+      private_key = tls_private_key.flux.private_key_pem
+    }
+  }
+}
+
+provider "github" {
+  owner = var.github.org
+  token = var.github_token
 }

@@ -18,9 +18,9 @@ data "talos_machine_configuration" "this" {
   machine_secrets  = talos_machine_secrets.this.machine_secrets
   config_patches = each.value.machine_type == "controlplane" ? [
     templatefile("${path.module}/configs/control-plane.yaml.tftpl", {
-      hostname     = each.key
-      node_name    = each.value.host_node
-      cluster_name = var.cluster.proxmox_cluster
+      hostname       = each.key
+      node_name      = each.value.host_node
+      cluster_name   = var.cluster.proxmox_cluster
       cilium_values  = var.cilium.values
       cilium_install = var.cilium.install
     })

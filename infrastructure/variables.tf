@@ -9,3 +9,15 @@ variable "proxmox" {
   })
   sensitive = true
 }
+
+variable "github" {
+  type = object({
+    org        = string
+    repository = string
+  })
+}
+
+variable "github_token" {
+  description = "GitHub PAT"
+  sensitive   = true
+}

@@ -12,7 +12,7 @@ module "talos" {
 
   cilium = {
     install = file("${path.module}/modules/talos/manifests/cilium.yaml")
-    values = file("${path.module}/../kubernetes/system/cilium/values.yaml")
+    values  = file("${path.module}/../kubernetes/system/cilium/values.yaml")
   }
 
   cluster = {

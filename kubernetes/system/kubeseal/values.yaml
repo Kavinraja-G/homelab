@@ -1,5 +1,0 @@
-nodeSelector:
-  k8s.imkavin.dev/nodepool: control-plane
-resources:
-  limits:
-    memory: 50Mi
