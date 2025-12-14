@@ -1,3 +1,8 @@
+variable "talos_version" {
+  default     = "v1.11.5"
+  description = "Talos Image Version"
+}
+
 variable "proxmox" {
   type = object({
     name         = string
@@ -7,7 +12,8 @@ variable "proxmox" {
     username     = string
     api_token    = string
   })
-  sensitive = true
+  description = "Proxmox Cluster configs"
+  sensitive   = true
 }
 
 variable "github" {
@@ -15,9 +21,10 @@ variable "github" {
     org        = string
     repository = string
   })
+  description = "GitHub Repository Information"
 }
 
 variable "github_token" {
-  description = "GitHub PAT"
+  description = "GitHub Token"
   sensitive   = true
 }

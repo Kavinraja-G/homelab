@@ -6,7 +6,7 @@ module "talos" {
   }
 
   image = {
-    version   = "v1.11.5"
+    version   = var.talos_version
     schematic = file("${path.module}/modules/talos/configs/image-schematic.yaml")
   }
 
