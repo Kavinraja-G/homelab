@@ -21,6 +21,8 @@ spec:
     remediation:
       retries: 3
   values:
+    nodeSelector:
+      node-role.kubernetes.io/control-plane: ""
     apiService:
       insecureSkipTLSVerify: false
     tls:
