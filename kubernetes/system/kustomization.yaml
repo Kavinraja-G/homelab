@@ -2,4 +2,4 @@ resources:
   - ./kubeseal
   - ./cert-manager
   - ./cilium
-  # - ./metrics-server
+  - ./metrics-server
