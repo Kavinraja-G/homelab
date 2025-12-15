@@ -12,7 +12,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: sealed-secrets
-        namespace: kubeseal
+        namespace: flux-system
   install:
     remediation:
       retries: -1

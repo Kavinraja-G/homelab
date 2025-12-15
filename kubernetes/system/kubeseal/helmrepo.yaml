@@ -2,7 +2,7 @@ apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
   name: sealed-secrets
-  namespace: kubeseal
+  namespace: flux-system
 spec:
   interval: 1h
   url: https://bitnami-labs.github.io/sealed-secrets/
