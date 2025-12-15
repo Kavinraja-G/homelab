@@ -1,0 +1,29 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: cert-manager
+  namespace: cert-manager
+spec:
+  interval: 1h
+  timeout: 5m
+  maxHistory: 2
+  chartRef:
+    kind: OCIRepository
+    name: cert-manager
+    namespace: cert-manager
+  install:
+    crds: CreateReplace
+  upgrade:
+    remediation:
+      remediateLastFailure: true
+      retries: 3
+      strategy: rollback
+    cleanupOnFail: true
+    crds: CreateReplace
+    force: true
+  rollback:
+    recreate: true
+    force: true
+  values:
+    crds:
+      enabled: true

@@ -26,12 +26,10 @@ spec:
     apiService:
       insecureSkipTLSVerify: false
     tls:
-      type: helm
-      # TODO: Move to cert-manager once it's deployed
-      # type: cert-manager
+      type: cert-manager
     resources:
       requests:
-        cpu: 100m
-        memory: 200Mi
+        cpu: 50m
+        memory: 100Mi
       limits:
-        memory: 500Mi
+        memory: 250Mi
