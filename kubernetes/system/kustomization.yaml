@@ -1,3 +1,4 @@
 resources:
   - ./kubeseal
   - ./cilium
+  - ./metrics-server

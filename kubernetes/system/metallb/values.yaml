@@ -1,3 +1,0 @@
-## Default values: https://artifacthub.io/packages/helm/metallb/metallb
-crds:
-  enabled: true
