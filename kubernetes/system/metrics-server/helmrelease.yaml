@@ -21,6 +21,12 @@ spec:
     remediation:
       retries: 3
   values:
+    apiService:
+      insecureSkipTLSVerify: false
+    tls:
+      type: helm
+      # TODO: Move to cert-manager once it's deployed
+      # type: cert-manager
     resources:
       requests:
         cpu: 100m
