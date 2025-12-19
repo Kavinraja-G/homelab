@@ -1,3 +1,5 @@
+namespace: karakeep
+
 configMapGenerator:
   - envs:
       - .config

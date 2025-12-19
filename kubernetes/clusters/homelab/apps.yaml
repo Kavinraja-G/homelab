@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   dependsOn:
-    - name: namespace-bootstrap
+    - name: system
   interval: 30m
   sourceRef:
     kind: GitRepository
