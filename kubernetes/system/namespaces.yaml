@@ -1,0 +1,5 @@
+namespaces:
+  - name: cert-manager
+  - name: littlelink
+  - name: kubeseal
+  - name: pangolin

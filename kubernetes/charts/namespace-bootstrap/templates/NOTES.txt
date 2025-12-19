@@ -1,0 +1,13 @@
+Namespace chart
+================
+
+This chart creates one or more Kubernetes Namespaces based on the required `values.namespaces` array.
+
+Multiple namespaces using the `namespaces` array (example shown using `--set`):
+
+  $ helm template . \
+    --set namespaces[0].name=monitoring \
+    --set namespaces[0].labels.environment=prod \
+    --set namespaces[1].name=dev
+
+When used with Flux, create a GitRepository (pointing to this repo) and a HelmRelease that references this chart path within the repo to bootstrap namespaces from Git. Provide the `values.namespaces` array in the `HelmRelease` `values` section.

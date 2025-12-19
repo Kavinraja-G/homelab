@@ -1,0 +1,20 @@
+{{- /* Render multiple namespaces from the required `namespaces` array. */ -}}
+{{- if .Values.namespaces }}
+{{- range $i, $ns := .Values.namespaces }}
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: {{ $ns.name | quote }}
+{{- with $ns.labels }}
+  labels:
+{{ toYaml . | indent 4 }}
+{{- end }}
+{{- with $ns.annotations }}
+  annotations:
+{{ toYaml . | indent 4 }}
+{{- end }}
+{{- end }}
+{{- else }}
+# No namespaces provided; nothing to render.
+{{- end }}

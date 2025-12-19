@@ -1,0 +1,15 @@
+## Default values for namespace-bootstrap.
+## This file contains configuration for the Namespace resource(s) created by the chart.
+
+## Create multiple namespaces using an array of objects.
+## Each entry must have a `name` and may include `labels` and `annotations`.
+namespaces: []
+
+# Example:
+# namespaces:
+#   - name: monitoring
+#     labels:
+#       environment: prod
+#   - name: dev
+#     annotations:
+#       owner: team-a

@@ -1,0 +1,24 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: namespace-bootstrap
+  namespace: flux-system
+spec:
+  interval: 1h
+  chart:
+    spec:
+      chart: ./kubernetes/charts/namespace-bootstrap
+      version: 0.1.0
+      sourceRef:
+        kind: GitRepository
+        name: flux-system
+        namespace: flux-system
+      valuesFiles:
+        - ./kubernetes/system/namespaces.yaml
+  install:
+    remediation:
+      retries: -1
+  upgrade:
+    cleanupOnFail: false
+    remediation:
+      retries: 2

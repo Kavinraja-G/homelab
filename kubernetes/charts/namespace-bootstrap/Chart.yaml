@@ -1,0 +1,6 @@
+apiVersion: v2
+name: namespace-bootstrap
+description: A generic Helm chart to create a Kubernetes Namespace for Flux bootstrapping
+type: application
+version: 0.1.0
+appVersion: "1.0.0"
