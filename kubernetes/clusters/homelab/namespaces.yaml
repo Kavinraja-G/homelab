@@ -9,6 +9,7 @@ spec:
     spec:
       chart: ./kubernetes/charts/namespace-bootstrap
       version: 0.1.0
+      reconcileStrategy: Revision
       sourceRef:
         kind: GitRepository
         name: flux-system
