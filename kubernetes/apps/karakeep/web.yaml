@@ -1,3 +1,4 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -43,7 +44,7 @@ kind: Service
 metadata:
   name: web
   annotations:
-    metallb.io/loadBalancerIPs: 192.168.0.124
+    io.cilium/lb-ipam-ips: 192.168.20.152
 spec:
   selector:
     app: karakeep-web

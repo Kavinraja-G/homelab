@@ -1,16 +1,10 @@
-namespace: karakeep
-
-secretGenerator:
-  - envs:
-      - .secrets
-    name: karakeep-secrets
-
 configMapGenerator:
   - envs:
       - .config
     name: karakeep-configuration
 
 resources:
+  - secret.yaml
   - web.yaml
   - chrome.yaml
   - meilisearch.yaml

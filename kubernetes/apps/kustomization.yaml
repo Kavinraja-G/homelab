@@ -1,4 +1,5 @@
 resources:
   - ./littlelink
+  - ./karakeep
   # - ./adguard
   # - ./glance

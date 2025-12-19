@@ -3,3 +3,4 @@ namespaces:
   - name: littlelink
   - name: kubeseal
   - name: pangolin
+  - name: karakeep
