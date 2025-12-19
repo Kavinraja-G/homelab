@@ -3,3 +3,4 @@ resources:
   - ./cert-manager
   - ./cilium
   - ./metrics-server
+  - ./pangolin

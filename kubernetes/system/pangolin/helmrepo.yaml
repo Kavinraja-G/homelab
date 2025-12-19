@@ -1,0 +1,9 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: pangolin
+  namespace: flux-system
+spec:
+  interval: 1h
+  url: https://charts.fossorial.io/
+  timeout: 5m
