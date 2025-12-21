@@ -7,12 +7,9 @@ metadata:
     storageclass.kubernetes.io/is-default-class: "true"
 allowVolumeExpansion: true
 parameters:
-  csi.storage.k8s.io/fstype: lvm-thin
   storage: local-lvm
   cache: writethrough
   ssd: "true"
-mountOptions:
-  - noatime
 provisioner: csi.proxmox.sinextra.dev
 volumeBindingMode: WaitForFirstConsumer
 ---
@@ -22,12 +19,9 @@ metadata:
   name: proxmox-csi-retain
 allowVolumeExpansion: true
 parameters:
-  csi.storage.k8s.io/fstype: lvm-thin
   storage: local-lvm
   cache: writethrough
   ssd: "true"
-mountOptions:
-  - noatime
 provisioner: csi.proxmox.sinextra.dev
 reclaimPolicy: Retain
 volumeBindingMode: WaitForFirstConsumer
