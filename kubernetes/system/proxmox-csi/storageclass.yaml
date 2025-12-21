@@ -7,7 +7,7 @@ metadata:
     storageclass.kubernetes.io/is-default-class: "true"
 allowVolumeExpansion: true
 parameters:
-  csi.storage.k8s.io/fstype: ext4
+  csi.storage.k8s.io/fstype: lvm-thin
   storage: lvm-thin
   cache: writethrough
   ssd: "true"
@@ -22,7 +22,7 @@ metadata:
   name: proxmox-csi-retain
 allowVolumeExpansion: true
 parameters:
-  csi.storage.k8s.io/fstype: ext4
+  csi.storage.k8s.io/fstype: lvm-thin
   storage: lvm-thin
   cache: writethrough
   ssd: "true"
