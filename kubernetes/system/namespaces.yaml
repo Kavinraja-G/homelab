@@ -4,3 +4,4 @@ namespaces:
   - name: kubeseal
   - name: pangolin
   - name: karakeep
+  - name: reloader

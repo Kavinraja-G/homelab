@@ -3,5 +3,6 @@ resources:
   - ./proxmox-csi
   - ./cert-manager
   - ./cilium
+  - ./reloader
   - ./metrics-server
   - ./pangolin
