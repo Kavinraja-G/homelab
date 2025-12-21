@@ -7,7 +7,7 @@ theme:
   negative-color: 3 90 63
 branding:
   custom-footer: |
-    <p>Kavin © 2025</a></p>
+    <p>Kavin © 2026</a></p>
   logo-url: https://avatars.githubusercontent.com/u/62742678?v=4
   favicon-url: https://avatars.githubusercontent.com/u/62742678?v=4
   app-name: "Mission Control"
@@ -49,11 +49,12 @@ pages:
       - size: small
         widgets:
           - type: to-do
-          - type: dns-stats
-            service: adguard
-            url: ${ADGUARD_HOME_URL}
-            username: ${ADGUARD_HOME_USERNAME}
-            password: ${ADGUARD_HOME_PASSWORD}
+          # TODO: Look for a way to deploy on Router?
+          # - type: dns-stats
+          #   service: adguard
+          #   url: ${ADGUARD_HOME_URL}
+          #   username: ${ADGUARD_HOME_USERNAME}
+          #   password: ${ADGUARD_HOME_PASSWORD}
           - type: markets
             markets:
               - symbol: ^NSEI
@@ -77,16 +78,16 @@ pages:
             cache: 1m
             title: HomeLab Services
             sites:
-              - title: AdGuard Home
-                same-tab: true
-                timeout: 5s
-                url: ${ADGUARD_HOME_URL}
-                icon: di:adguard-home.png
-              - title: Bezel
-                same-tab: true
-                timeout: 5s
-                url: ${BEZEL_MONITOR_URL}
-                icon: si:bricks
+              # - title: AdGuard Home
+              #   same-tab: true
+              #   timeout: 5s
+              #   url: ${ADGUARD_HOME_URL}
+              #   icon: di:adguard-home.png
+              # - title: Bezel
+              #   same-tab: true
+              #   timeout: 5s
+              #   url: ${BEZEL_MONITOR_URL}
+              #   icon: si:bricks
               - title: Karakeep
                 same-tab: true
                 timeout: 5s

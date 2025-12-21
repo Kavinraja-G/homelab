@@ -32,29 +32,8 @@ spec:
           env:
             - name: LINKS_URL
               value: https://links.imkavin.dev
-            - name: BEZEL_MONITOR_URL
-              value: http://beszel.monitoring.svc.cluster.local:8090
             - name: KARAKEEP_MONITOR_URL
               value: http://web.karakeep.svc.cluster.local:3000
-            - name: ADGUARD_HOME_URL
-              value: http://adguard-service.adguard.svc.cluster.local:3000
-            - name: RENGOKU_VPS_IP
-              value: 51.222.110.15
-            - name: ADGUARD_HOME_USERNAME
-              valueFrom:
-                secretKeyRef:
-                  key: ADGUARD_HOME_USERNAME
-                  name: glance-secrets
-            - name: ADGUARD_HOME_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  key: ADGUARD_HOME_PASSWORD
-                  name: glance-secrets
-            - name: RENGOKU_GLANCE_AGENT_TOKEN
-              valueFrom:
-                secretKeyRef:
-                  key: RENGOKU_GLANCE_AGENT_TOKEN
-                  name: glance-secrets
           securityContext:
             allowPrivilegeEscalation: false
             readOnlyRootFilesystem: true
