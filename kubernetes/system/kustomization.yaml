@@ -1,5 +1,6 @@
 resources:
   - ./kubeseal
+  - ./proxmox-csi
   - ./cert-manager
   - ./cilium
   - ./metrics-server

@@ -1,0 +1,4 @@
+resources:
+  - https://raw.githubusercontent.com/sergelogvinov/proxmox-csi-plugin/refs/tags/v0.17.0/docs/deploy/proxmox-csi-plugin-release.yml
+  - secret.yaml
+  - storageclass.yaml
