@@ -8,7 +8,7 @@ metadata:
 allowVolumeExpansion: true
 parameters:
   csi.storage.k8s.io/fstype: lvm-thin
-  storage: lvm-thin
+  storage: local-lvm
   cache: writethrough
   ssd: "true"
 mountOptions:
@@ -23,7 +23,7 @@ metadata:
 allowVolumeExpansion: true
 parameters:
   csi.storage.k8s.io/fstype: lvm-thin
-  storage: lvm-thin
+  storage: local-lvm
   cache: writethrough
   ssd: "true"
 mountOptions:
