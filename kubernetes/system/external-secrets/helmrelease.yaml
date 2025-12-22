@@ -1,0 +1,61 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: eso
+  namespace: security
+spec:
+  interval: 1h
+  chart:
+    spec:
+      chart: external-secrets
+      version: 1.2.0
+      sourceRef:
+        kind: HelmRepository
+        name: external-secrets
+        namespace: flux-system
+  install:
+    remediation:
+      retries: -1
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  values:
+    fullnameOverride: external-secrets
+    processClusterExternalSecret: false
+    processPushSecret: false
+    processClusterPushSecret: false
+    installCRDs: false
+    certController:
+      create: false
+    resources:
+      requests:
+        cpu: 50m
+        memory: 128Mi
+      limits:
+        memory: 256Mi
+    bitwarden-sdk-server:
+      enabled: true
+      resources:
+        requests:
+          cpu: 50m
+          memory: 128Mi
+        limits:
+          memory: 256Mi
+    securityContext:
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop:
+          - ALL
+      readOnlyRootFilesystem: true
+      runAsNonRoot: true
+      runAsUser: 1000
+    webhook:
+      lookaheadInterval: "1h"
+      certManager:
+        enabled: true
+        cert:
+          issuerRef:
+            group: cert-manager.io
+            kind: "ClusterIssuer"
+            name: "self-signed"

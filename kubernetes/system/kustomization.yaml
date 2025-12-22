@@ -1,5 +1,6 @@
 resources:
   - ./kubeseal
+  - ./external-secrets
   - ./proxmox-csi
   - ./cert-manager
   - ./cilium

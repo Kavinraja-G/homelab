@@ -1,3 +1,4 @@
 resources:
   - oci-repository.yaml
   - helmrelease.yaml
+  - cluster-issuer.yaml
