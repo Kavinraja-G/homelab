@@ -31,17 +31,17 @@ spec:
     resources:
       requests:
         cpu: 50m
-        memory: 128Mi
+        memory: 100Mi
       limits:
-        memory: 256Mi
+        memory: 200Mi
     bitwarden-sdk-server:
       enabled: true
       resources:
         requests:
           cpu: 50m
-          memory: 128Mi
+          memory: 100Mi
         limits:
-          memory: 256Mi
+          memory: 200Mi
     securityContext:
       allowPrivilegeEscalation: false
       capabilities:
