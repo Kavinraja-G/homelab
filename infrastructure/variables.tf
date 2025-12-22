@@ -28,3 +28,8 @@ variable "github_token" {
   description = "GitHub Token"
   sensitive   = true
 }
+
+variable "bitwarden_access_token" {
+  description = "Bitwarden Secrets Manager Machine account access token"
+  sensitive   = true
+}

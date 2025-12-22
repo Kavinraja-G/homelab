@@ -24,6 +24,10 @@ terraform {
       source  = "hashicorp/github"
       version = "6.9.0"
     }
+    bitwarden = {
+      source  = "maxlaverse/bitwarden"
+      version = ">= 0.16.0"
+    }
   }
 }
 
@@ -75,4 +79,11 @@ provider "flux" {
 provider "github" {
   owner = var.github.org
   token = var.github_token
+}
+
+provider "bitwarden" {
+  access_token = var.bitwarden_access_token
+  experimental {
+    embedded_client = true
+  }
 }
