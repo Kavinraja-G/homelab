@@ -9,6 +9,7 @@ spec:
     - bitwarden-sdk-server
     - bitwarden-sdk-server.security
     - bitwarden-sdk-server.security.svc
+    - bitwarden-sdk-server.security.svc.cluster.local
   duration: 8760h0m0s
   issuerRef:
     group: cert-manager.io
