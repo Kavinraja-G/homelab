@@ -19,4 +19,3 @@ configMapGenerator:
 resources:
   - secrets.yaml
   - deploy.yaml
-  - agents.yaml

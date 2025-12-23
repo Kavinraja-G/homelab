@@ -6,3 +6,4 @@ namespaces:
   - name: security
   - name: pangolin
   - name: karakeep
+  - name: glance

@@ -5,6 +5,11 @@ configMapGenerator:
       - .config
     name: karakeep-configuration
 
+labels:
+  - pairs:
+      homelab.imkavin.dev/app: karakeep
+    includeSelectors: false
+
 resources:
   - secret.yaml
   - web.yaml

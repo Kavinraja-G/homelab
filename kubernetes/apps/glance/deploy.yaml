@@ -34,6 +34,13 @@ spec:
               value: https://links.imkavin.dev
             - name: KARAKEEP_MONITOR_URL
               value: http://web.karakeep.svc.cluster.local:3000
+            - name: PROXMOXVE_URL
+              value: "192.168.20.110:8006"
+            - name: PROXMOXVE_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: pmx-api-ro-token
+                  key: token
           securityContext:
             allowPrivilegeEscalation: false
             readOnlyRootFilesystem: true
@@ -61,7 +68,7 @@ metadata:
     app.kubernetes.io/name: glance
     app.kubernetes.io/instance: glance
   annotations:
-    metallb.io/loadBalancerIPs: 192.168.0.126
+    io.cilium/lb-ipam-ips: 192.168.20.160
 spec:
   type: LoadBalancer
   selector:
