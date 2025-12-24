@@ -41,6 +41,16 @@ spec:
                 secretKeyRef:
                   name: pmx-api-ro-token
                   key: token
+            - name: VPS_IP
+              valueFrom:
+                secretKeyRef:
+                  key: address
+                  name: vps-ip-address
+            - name: VPS_GLANCE_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  key: token
+                  name: vps-glance-token
           securityContext:
             allowPrivilegeEscalation: false
             readOnlyRootFilesystem: true

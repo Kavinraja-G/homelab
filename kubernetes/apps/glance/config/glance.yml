@@ -18,6 +18,17 @@ pages:
     head-widgets:
       - type: split-column
         widgets:
+          - type: server-stats
+            hide-header: true
+            servers:
+              - type: remote
+                name: Rengoku (VPS)
+                url: http://${VPS_IP}:27973
+                token: ${VPS_GLANCE_TOKEN}
+                hide-mountpoints-by-default: true
+                mountpoints:
+                  "/":
+                    hide: false
           - type: custom-api
             title: PROXMOX-VE NODES
             title-url: https://${PROXMOXVE_URL}
