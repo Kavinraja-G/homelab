@@ -29,6 +29,12 @@ spec:
         - name: glance
           image: "docker.io/glanceapp/glance:latest"
           imagePullPolicy: IfNotPresent
+          resources:
+            requests:
+              cpu: 10m
+              memory: 50Mi
+            limits:
+              memory: 100Mi
           env:
             - name: LINKS_URL
               value: https://links.imkavin.dev
