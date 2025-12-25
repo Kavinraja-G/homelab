@@ -12,6 +12,7 @@ sections:
   show:
     - requirements
     - providers
+    - modules
     - resources
     - inputs
     - outputs

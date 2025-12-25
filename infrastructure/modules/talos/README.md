@@ -17,10 +17,6 @@ OpenTofu module to deploy Talos based K8s cluster in Proxmox VEs.
 | <a name="provider_proxmox"></a> [proxmox](#provider\_proxmox) | >=0.89.0 |
 | <a name="provider_talos"></a> [talos](#provider\_talos) | >=0.9.0 |
 
-## Modules
-
-No modules.
-
 ## Resources
 
 | Name | Type |
