@@ -5,7 +5,7 @@ All my homelab infrastructure are deployed via [OpenTofu](https://opentofu.org).
 ## Overview
 
 Deploys the following components:
-1. **Proxmox VMs** in the host nodes as defined.
+1. **Proxmox VMs** in the host nodes to create VMs for K8s.
 2. [Talos](https://docs.siderolabs.com/talos) based K8s cluster on the VMs.
 3. Bootstraps K8s cluster with FluxCD components and intializes the [monorepo](../kubernetes/clusters/homelab/).
 4. Injects Bitwarden Secrets.
