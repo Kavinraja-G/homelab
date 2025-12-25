@@ -40,7 +40,7 @@ flowchart
 	style n4 fill:#7ED957,stroke-width:0px,stroke:#000000
 	style n5 color:#000000,fill:#FFBD59,stroke-width:0px
 	style n6 color:#000000,fill:#FFBD59,stroke-width:0px
-	style n7 fill:#FFBD59,stroke-width:0px
+	style n7 color:#000000,fill:#FFBD59,stroke-width:0px
 	n3@{ shape: "circle", label: "Circle" }
 	n3
 	n3
@@ -80,7 +80,7 @@ This section documents my current homelab hardware inventory, which may change a
 
 ---
 
-##### References
+#### References
 
 Very good references that I used for exploring and selecting the stuffs mentioned above:
 - [Talos + Proxmox](https://blog.stonegarden.dev/articles/2024/08/talos-proxmox-tofu)
