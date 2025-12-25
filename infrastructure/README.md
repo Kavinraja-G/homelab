@@ -9,6 +9,7 @@ Deploys the following components:
 2. [Talos](https://docs.siderolabs.com/talos) based K8s cluster on the VMs.
 3. Bootstraps K8s cluster with FluxCD components and intializes the [monorepo](../kubernetes/clusters/homelab/).
 4. Injects Bitwarden Secrets.
+5. Terraform backend uses [Git](https://github.com/plumber-cd/terraform-backend-git).
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
 
