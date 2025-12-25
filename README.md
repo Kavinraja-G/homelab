@@ -82,7 +82,7 @@ This section documents my current homelab hardware inventory, which may change a
 
 #### References
 
-Very good references that I used for exploring and selecting the stuffs mentioned above:
+Some good references that I used for exploring and selecting the stuffs mentioned above:
 - [Talos + Proxmox](https://blog.stonegarden.dev/articles/2024/08/talos-proxmox-tofu)
 - [Homelab networking 101](https://www.virtualizationhowto.com/2025/10/home-lab-networking-101-vlans-subnets-and-segmentation-for-beginners/)
 - [TP-Link Omada Switches](https://www.tp-link.com/in/support/faq/4094/)
