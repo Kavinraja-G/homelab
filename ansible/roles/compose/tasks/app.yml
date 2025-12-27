@@ -1,0 +1,79 @@
+---
+- name: Ensure compose base directory exists
+  ansible.builtin.file:
+    path: "{{ compose_base_dir }}"
+    state: directory
+    owner: "{{ ansible_user_id }}"
+    group: "{{ ansible_user_id }}"
+    mode: "0755"
+
+- name: Copy compose applications
+  copy:
+    src: "{{ repo_path  }}/{{ app }}/"
+    dest: "{{ compose_base_dir }}/{{ app }}/"
+    owner: "{{ ansible_user_id }}"
+    group: "{{ ansible_user_id }}"
+    mode: "0644"
+
+- name: Check if bw-secrets.yml exists
+  ansible.builtin.stat:
+    path: "{{ compose_base_dir }}/{{ app }}/bw-secrets.yml"
+  register: secrets_file
+
+- name: Load secrets
+  ansible.builtin.slurp:
+    src: "{{ compose_base_dir }}/{{ app }}/bw-secrets.yml"
+  register: secret_values
+  when: secrets_file.stat.exists
+
+- name: Decode Secret Contents
+  ansible.builtin.set_fact:
+    secret_contents: "{{ secret_values['content'] | b64decode | from_yaml | default({}) }}"
+
+- name: Fetch secrets from Bitwarden
+  ansible.builtin.shell: "bws secret get {{ item }} | jq -r '.value'"
+  loop: "{{ secret_contents.values() }}"
+  register: bw_secret_outputs
+  become: false
+  delegate_to: localhost
+  when:
+    - secrets_file.stat.exists
+    - secret_contents | length > 0
+
+- name: Build .env content
+  set_fact:
+    env_lines: "{{ env_lines | default([]) + [ key ~ '=' ~ secret.stdout ] }}"
+  loop: "{{ secret_contents.keys() | zip(bw_secret_outputs.results) | list }}"
+  loop_control:
+    loop_var: pair
+  vars:
+    key: "{{ pair.0 }}"
+    secret: "{{ pair.1 }}"
+  when: bw_secret_outputs is defined
+
+- name: Write .env file
+  copy:
+    dest: "{{ compose_base_dir }}/{{ app }}/.env"
+    content: |
+       {{ env_lines | join('\n') }}
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: "0600"
+  when:
+    - env_lines is defined
+    - env_lines | length > 0
+
+- name: Deploy services using Docker Compose
+  shell: docker compose up -d
+  args:
+    chdir: "{{ compose_base_dir }}/{{ app }}"
+
+- name: Run Docker Status
+  command: docker compose ps
+  args:
+    chdir: "{{ compose_base_dir }}/{{ app }}"
+  register: docker_out
+
+- name: Display Docker Status
+  debug:
+    var: docker_out.stdout_lines

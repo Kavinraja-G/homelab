@@ -1,0 +1,4 @@
+---
+repo_path: "/home/kavin/GitHub/homelab/vps"
+compose_base_dir: /work/homelab
+compose_apps: []

@@ -1,0 +1,14 @@
+---
+- name: Git Repo for configs
+  hosts: all
+  tasks:
+    - name: Clone and pull latest source code
+      environment:
+        HOME: "/home/{{ ansible_user }}"
+      git:
+        repo: "https://github.com/Kavinraja-G/homelab.git"
+        dest: "/home/{{ ansible_user }}/homelab"
+        version: main
+        force: true
+        update: true
+        accept_hostkey: true

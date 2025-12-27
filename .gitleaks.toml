@@ -1,0 +1,11 @@
+title = "Custom Config"
+
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Allowlist for false positives"
+paths = [
+  # Below files contains BWS UUIDs
+  '''vps/.*/bw-secrets\.yml''',
+]

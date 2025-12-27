@@ -1,0 +1,10 @@
+---
+- name: Deploy Applications
+  hosts: all
+  become: true
+
+  roles:
+    - role: compose
+      vars:
+        compose_apps:
+         - glance-agent

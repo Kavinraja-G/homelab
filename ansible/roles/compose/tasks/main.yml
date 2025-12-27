@@ -1,0 +1,6 @@
+---
+- name: Deploy compose applications
+  include_tasks: app.yml
+  loop: "{{ compose_apps }}"
+  loop_control:
+    loop_var: app
