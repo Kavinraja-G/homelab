@@ -8,7 +8,7 @@
     mode: "0755"
 
 - name: Copy compose applications
-  copy:
+  ansible.builtin.copy:
     src: "{{ repo_path  }}/{{ app }}/"
     dest: "{{ compose_base_dir }}/{{ app }}/"
     owner: "{{ ansible_user_id }}"
@@ -41,7 +41,7 @@
     - secret_contents | length > 0
 
 - name: Build .env content
-  set_fact:
+  ansible.builtin.set_fact:
     env_lines: "{{ env_lines | default([]) + [ key ~ '=' ~ secret.stdout ] }}"
   loop: "{{ secret_contents.keys() | zip(bw_secret_outputs.results) | list }}"
   loop_control:
@@ -52,7 +52,7 @@
   when: bw_secret_outputs is defined
 
 - name: Write .env file
-  copy:
+  ansible.builtin.copy:
     dest: "{{ compose_base_dir }}/{{ app }}/.env"
     content: |
        {{ env_lines | join('\n') }}
@@ -64,12 +64,12 @@
     - env_lines | length > 0
 
 - name: Deploy services using Docker Compose
-  shell: docker compose up -d
+  ansible.builtin.shell: docker compose up -d
   args:
     chdir: "{{ compose_base_dir }}/{{ app }}"
 
 - name: Run Docker Status
-  command: docker compose ps
+  ansible.builtin.shell: docker compose ps
   args:
     chdir: "{{ compose_base_dir }}/{{ app }}"
   register: docker_out
