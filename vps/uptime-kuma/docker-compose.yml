@@ -1,0 +1,13 @@
+services:
+  uptime-kuma:
+    image: louislam/uptime-kuma:2
+    restart: unless-stopped
+    environment:
+      - UPTIME_KUMA_PORT=3002
+    volumes:
+      - ./uptime-kuma-data:/app/data
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - "3002:3002" # We need to change the port as pangolin & uptimekuma uses same port
+    networks:
+      - pangolin

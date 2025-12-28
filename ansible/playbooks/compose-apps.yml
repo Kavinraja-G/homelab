@@ -8,3 +8,4 @@
       vars:
         compose_apps:
          - glance-agent
+         - uptime-kuma
