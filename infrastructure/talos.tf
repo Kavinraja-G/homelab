@@ -62,7 +62,7 @@ module "talos" {
       vm_id         = 801
       datastore_id  = "local-lvm"
       cpu           = 2
-      ram_dedicated = 8192
+      ram_dedicated = 12288
     }
   }
 }

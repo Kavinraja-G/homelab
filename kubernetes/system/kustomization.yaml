@@ -3,6 +3,7 @@ resources:
   - ./external-secrets
   - ./proxmox-csi
   - ./cert-manager
+  - ./prometheus
   - ./cilium
   - ./reloader
   - ./metrics-server
