@@ -1,0 +1,71 @@
+---
+apiVersion: grafana.integreatly.org/v1beta1
+kind: Grafana
+metadata:
+  name: grafana
+  namespace: monitoring
+  labels:
+    grafana.internal/instance: "homelab"
+spec:
+  disableDefaultSecurityContext: All
+  config:
+    log:
+      mode: "console"
+    auth:
+      disable_login_form: "false"
+    security:
+      admin_user: root
+      admin_password: secret
+    news:
+      news_feed_enabled: "false"
+    server:
+      enable_gzip: "true"
+    analytics:
+      check_for_updates: "false"
+      check_for_plugin_updates: "false"
+      feedback_links_enabled: "false"
+      reporting_enabled: "false"
+  service:
+    metadata:
+      annotations:
+        io.cilium/lb-ipam-ips: 192.168.20.175
+    spec:
+      type: LoadBalancer
+  deployment:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: grafana
+              readinessProbe:
+                failureThreshold: 3
+              env:
+                - name: GF_SECURITY_ADMIN_PASSWORD
+                  valueFrom:
+                    secretKeyRef:
+                      name: grafana-admin-creds
+                      key: GF_SECURITY_ADMIN_PASSWORD
+              securityContext:
+                allowPrivilegeEscalation: false
+                readOnlyRootFilesystem: true
+                capabilities: { drop: ["ALL"] }
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 1000
+            runAsGroup: 1000
+            fsGroup: 1000
+            fsGroupChangePolicy: OnRootMismatch
+          volumes:
+            - name: grafana-data
+              persistentVolumeClaim:
+                claimName: grafana-pvc
+      strategy:
+        type: Recreate
+  persistentVolumeClaim:
+    spec:
+      accessModes:
+        - ReadWriteOnce
+      resources:
+        requests:
+          storage: 5Gi
+      storageClassName: proxmox-csi-retain

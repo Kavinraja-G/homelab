@@ -8,4 +8,11 @@ description = "Allowlist for false positives"
 paths = [
   # Below files contains BWS UUIDs
   '''vps/.*/bw-secrets\.yml''',
+  '''kubernetes/apps/.*/bw-secrets\.yaml''',
+  '''kubernetes/system/.*/bw-secrets\.yaml''',
+]
+
+regexes = [
+  # Allow BWS UUIDs
+  '''key:\s*"[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"''',
 ]

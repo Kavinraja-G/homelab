@@ -4,6 +4,7 @@ resources:
   - ./proxmox-csi
   - ./cert-manager
   - ./prometheus
+  - ./grafana
   - ./cilium
   - ./reloader
   - ./metrics-server

@@ -1,0 +1,6 @@
+resources:
+  - bw-secrets.yaml
+  - grafana.yaml
+  - datasources.yaml
+  - folders.yaml
+  - dashboards.yaml

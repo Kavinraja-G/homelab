@@ -1,0 +1,128 @@
+---
+apiVersion: grafana.integreatly.org/v1beta1
+kind: GrafanaDashboard
+metadata:
+  name: kubernetes-nodes
+  namespace: monitoring
+spec:
+  resyncPeriod: 12h
+  folder: "Kubernetes"
+  instanceSelector:
+    matchLabels:
+      grafana.internal/instance: homelab
+  datasources:
+    - datasourceName: prometheus
+      inputName: DS_PROMETHEUS
+  url: https://grafana.com/api/dashboards/15759/revisions/37/download
+---
+apiVersion: grafana.integreatly.org/v1beta1
+kind: GrafanaDashboard
+metadata:
+  name: kubernetes-global
+  namespace: monitoring
+spec:
+  resyncPeriod: 12h
+  folder: "Kubernetes"
+  instanceSelector:
+    matchLabels:
+      grafana.internal/instance: homelab
+  datasources:
+    - datasourceName: prometheus
+      inputName: DS_PROMETHEUS
+  url: https://grafana.com/api/dashboards/15757/revisions/43/download
+---
+apiVersion: grafana.integreatly.org/v1beta1
+kind: GrafanaDashboard
+metadata:
+  name: kubernetes-coredns
+  namespace: monitoring
+spec:
+  resyncPeriod: 12h
+  folder: "Kubernetes"
+  instanceSelector:
+    matchLabels:
+      grafana.internal/instance: homelab
+  datasources:
+    - datasourceName: prometheus
+      inputName: DS_PROMETHEUS
+  url: https://grafana.com/api/dashboards/15762/revisions/21/download
+---
+apiVersion: grafana.integreatly.org/v1beta1
+kind: GrafanaDashboard
+metadata:
+  name: kubernetes-namespaces
+  namespace: monitoring
+spec:
+  resyncPeriod: 12h
+  folder: "Kubernetes"
+  instanceSelector:
+    matchLabels:
+      grafana.internal/instance: homelab
+  datasources:
+    - datasourceName: prometheus
+      inputName: DS_PROMETHEUS
+  url: https://grafana.com/api/dashboards/15758/revisions/42/download
+---
+apiVersion: grafana.integreatly.org/v1beta1
+kind: GrafanaDashboard
+metadata:
+  name: kubernetes-pods
+  namespace: monitoring
+spec:
+  resyncPeriod: 12h
+  folder: "Kubernetes"
+  instanceSelector:
+    matchLabels:
+      grafana.internal/instance: homelab
+  datasources:
+    - datasourceName: prometheus
+      inputName: DS_PROMETHEUS
+  url: https://grafana.com/api/dashboards/15760/revisions/36/download
+---
+apiVersion: grafana.integreatly.org/v1beta1
+kind: GrafanaDashboard
+metadata:
+  name: kubernetes-volumes
+  namespace: monitoring
+spec:
+  resyncPeriod: 12h
+  folder: "Kubernetes"
+  instanceSelector:
+    matchLabels:
+      grafana.internal/instance: homelab
+  datasources:
+    - datasourceName: prometheus
+      inputName: DS_PROMETHEUS
+  url: https://grafana.com/api/dashboards/11454/revisions/14/download
+---
+apiVersion: grafana.integreatly.org/v1beta1
+kind: GrafanaDashboard
+metadata:
+  name: prometheus
+  namespace: monitoring
+spec:
+  resyncPeriod: 12h
+  folder: "Kubernetes"
+  instanceSelector:
+    matchLabels:
+      grafana.internal/instance: homelab
+  datasources:
+    - datasourceName: prometheus
+      inputName: DS_PROMETHEUS
+  url: https://grafana.com/api/dashboards/19105/revisions/7/download
+---
+apiVersion: grafana.integreatly.org/v1beta1
+kind: GrafanaDashboard
+metadata:
+  name: node-exporter-full
+  namespace: monitoring
+spec:
+  resyncPeriod: 12h
+  folder: "Kubernetes"
+  instanceSelector:
+    matchLabels:
+      grafana.internal/instance: homelab
+  datasources:
+    - datasourceName: prometheus
+      inputName: DS_PROMETHEUS
+  url: https://grafana.com/api/dashboards/1860/revisions/42/download

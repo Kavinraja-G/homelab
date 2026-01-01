@@ -1,0 +1,3 @@
+resources:
+  - oci-repository.yaml
+  - helmrelease.yaml
