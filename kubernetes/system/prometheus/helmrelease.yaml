@@ -15,7 +15,7 @@ spec:
     crds:
       enabled: true
     alertmanager:
-      enabled: false
+      enabled: true
     kubeApiServer:
       enabled: true
     kubelet:
