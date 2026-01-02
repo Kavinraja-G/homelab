@@ -4,3 +4,4 @@ resources:
   - datasources.yaml
   - folders.yaml
   - dashboards.yaml
+  - contactpoints.yaml
