@@ -1,3 +1,5 @@
 resources:
   - oci-repository.yaml
   - helmrelease.yaml
+  - bw-secrets.yaml
+  - alertmanager.yaml
