@@ -1,0 +1,33 @@
+---
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: AlertmanagerConfig
+metadata:
+  name: alertmanager-slack-config
+  namespace: monitoring
+spec:
+  route:
+    receiver: "slack-notifications"
+    repeatInterval: "6h"
+    continue: true
+    matchers:
+      - matchType: "="
+        name: "severity"
+        value: "critical"
+  receivers:
+    - name: "slack-notifications"
+      slackConfigs:
+        - channel: "#alerts"
+          apiURL:
+            key: url
+            name: alertmanager-slack-webhook
+          iconURL: https://avatars3.githubusercontent.com/u/3380462
+          title: |-
+            [{{ .Status | toUpper }}{{ if eq .Status "firing" }}:{{ .Alerts.Firing | len }}{{ end }}] {{ .CommonLabels.alertname }} for {{ .CommonLabels.job }}
+            {{- if gt (len .CommonLabels) (len .GroupLabels) -}}
+              {{" "}}(
+              {{- with .CommonLabels.Remove .GroupLabels.Names }}
+                {{- range $index, $label := .SortedPairs -}}
+                  {{ if $index }}, {{ end }}
+                  {{- $label.Name }}="{{ $label.Value -}}"
+                {{- end }}
+              {{- end -}}

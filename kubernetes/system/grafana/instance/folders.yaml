@@ -5,6 +5,7 @@ metadata:
   name: kubernetes
   namespace: monitoring
 spec:
+  resyncPeriod: 12h
   title: "Kubernetes"
   instanceSelector:
     matchLabels:
