@@ -54,8 +54,7 @@
 - name: Write .env file
   ansible.builtin.copy:
     dest: "{{ compose_base_dir }}/{{ app }}/.env"
-    content: |
-       {{ env_lines | join('\n') }}
+    content: "{{ env_lines | map('trim') | join('\n') ~ '\n' }}"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     mode: "0600"

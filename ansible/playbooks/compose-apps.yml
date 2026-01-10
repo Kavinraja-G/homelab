@@ -9,3 +9,4 @@
         compose_apps:
          - glance-agent
          - uptime-kuma
+         - pocket-id

@@ -1,0 +1,25 @@
+services:
+  pocket-id:
+    image: ghcr.io/pocket-id/pocket-id:v2
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      - TRUST_PROXY=false
+      - PUID=1000
+      - PGID=1000
+    ports:
+      - 1411:1411
+    volumes:
+      - "./data:/app/data"
+    healthcheck:
+      test: [ "CMD", "/app/pocket-id", "healthcheck" ]
+      interval: 1m30s
+      timeout: 5s
+      retries: 2
+      start_period: 10s
+    networks:
+      - pangolin
+
+networks:
+  pangolin:
+    external: true

@@ -11,3 +11,7 @@ services:
       - "3002:3002" # We need to change the port as pangolin & uptimekuma uses same port
     networks:
       - pangolin
+
+networks:
+  pangolin:
+    external: true
