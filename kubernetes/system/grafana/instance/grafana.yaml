@@ -13,12 +13,24 @@ spec:
       mode: "console"
     auth:
       disable_login_form: "false"
+      oauth_allow_insecure_email_lookup: "true"
+    auth.generic_oauth:
+      enabled: "true"
+      name: "Pocket ID"
+      client_id: homelab-grafana
+      client_secret: ${GF_OIDC_CLIENT_SECRET}
+      scopes: "openid email profile"
+      skip_org_role_sync: "true"
+      auth_url: "${GF_AUTH_URL}/authorize"
+      token_url: "${GF_AUTH_URL}/api/oidc/token"
+      api_url: ""
     security:
-      admin_user: root
+      admin_user: "${GF_SECURITY_ADMIN_USER}"
       admin_password: secret
     news:
       news_feed_enabled: "false"
     server:
+      root_url: "https://${GF_DOMAIN}/"
       enable_gzip: "true"
     analytics:
       check_for_updates: "false"
@@ -40,10 +52,30 @@ spec:
               readinessProbe:
                 failureThreshold: 3
               env:
+                - name: GF_SECURITY_ADMIN_USER
+                  valueFrom:
+                    secretKeyRef:
+                      name: grafana-secrets
+                      key: GF_SECURITY_ADMIN_USER
+                - name: GF_DOMAIN
+                  valueFrom:
+                    secretKeyRef:
+                      name: grafana-secrets
+                      key: GF_DOMAIN
+                - name: GF_AUTH_URL
+                  valueFrom:
+                    secretKeyRef:
+                      name: grafana-secrets
+                      key: GF_AUTH_URL
+                - name: GF_OIDC_CLIENT_SECRET
+                  valueFrom:
+                    secretKeyRef:
+                      name: grafana-secrets
+                      key: GF_OIDC_CLIENT_SECRET
                 - name: GF_SECURITY_ADMIN_PASSWORD
                   valueFrom:
                     secretKeyRef:
-                      name: grafana-admin-creds
+                      name: grafana-secrets
                       key: GF_SECURITY_ADMIN_PASSWORD
               securityContext:
                 allowPrivilegeEscalation: false
