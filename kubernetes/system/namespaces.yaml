@@ -8,6 +8,7 @@ namespaces:
   - name: karakeep
   - name: glance
   - name: cnpg-system
+  - name: postgres
   - name: monitoring
     labels:
       pod-security.kubernetes.io/enforce: privileged

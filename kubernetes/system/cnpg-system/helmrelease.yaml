@@ -23,6 +23,10 @@ spec:
     remediation:
       retries: 3
   values:
+    monitoring:
+      podMonitorEnabled: true
+      podMonitorAdditionalLabels:
+        release: homelab
     resources:
       requests:
         cpu: 5m

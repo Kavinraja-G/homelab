@@ -126,3 +126,19 @@ spec:
     - datasourceName: prometheus
       inputName: DS_PROMETHEUS
   url: https://grafana.com/api/dashboards/1860/revisions/42/download
+---
+apiVersion: grafana.integreatly.org/v1beta1
+kind: GrafanaDashboard
+metadata:
+  name: cnpg
+  namespace: monitoring
+spec:
+  resyncPeriod: 12h
+  folder: "Kubernetes"
+  instanceSelector:
+    matchLabels:
+      grafana.internal/instance: homelab
+  datasources:
+    - datasourceName: prometheus
+      inputName: DS_PROMETHEUS
+  url: "https://raw.githubusercontent.com/cloudnative-pg/grafana-dashboards/refs/heads/main/charts/cluster/grafana-dashboard.json"

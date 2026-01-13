@@ -1,0 +1,18 @@
+---
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: homelab-postgres
+  namespace: postgres
+  labels:
+    release: homelab
+spec:
+  namespaceSelector:
+    matchNames:
+      - postgres
+  podMetricsEndpoints:
+    - port: metrics
+  selector:
+    matchLabels:
+      cnpg.io/cluster: homelab
+      cnpg.io/podRole: instance

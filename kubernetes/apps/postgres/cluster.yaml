@@ -1,0 +1,19 @@
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: homelab
+  namespace: postgres
+spec:
+  instances: 1
+  resources:
+    requests:
+      cpu: 100m
+      memory: 500Mi
+    limits:
+      memory: 500Mi
+  storage:
+    storageClass: proxmox-csi-retain
+    size: 5Gi
+  monitoring:
+    enablePodMonitor: false
