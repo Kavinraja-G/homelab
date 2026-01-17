@@ -1,0 +1,12 @@
+namespace: blinko
+
+labels:
+  - pairs:
+      homelab.imkavin.dev/app: blinko
+    includeSelectors: false
+
+resources:
+  - deployment.yaml
+  - pvc.yaml
+  - service.yaml
+  - secret.yaml

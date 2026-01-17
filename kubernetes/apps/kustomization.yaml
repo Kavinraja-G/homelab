@@ -2,3 +2,5 @@ resources:
   - ./littlelink
   - ./karakeep
   - ./glance
+  - ./postgres
+  - ./blinko

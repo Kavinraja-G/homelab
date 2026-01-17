@@ -1,3 +1,10 @@
+namespace: postgres
+
+labels:
+  - pairs:
+      homelab.imkavin.dev/app: postgres
+    includeSelectors: false
+
 resources:
   - cluster.yaml
   - pod-monitor.yaml
