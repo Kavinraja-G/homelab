@@ -10,3 +10,15 @@ spec:
   instanceSelector:
     matchLabels:
       grafana.internal/instance: "homelab"
+---
+apiVersion: grafana.integreatly.org/v1beta1
+kind: GrafanaFolder
+metadata:
+  name: homelab
+  namespace: monitoring
+spec:
+  resyncPeriod: 12h
+  title: "Homelab"
+  instanceSelector:
+    matchLabels:
+      grafana.internal/instance: "homelab"
