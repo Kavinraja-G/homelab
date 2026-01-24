@@ -1,0 +1,15 @@
+---
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: ScrapeConfig
+metadata:
+  name: openwrt-router
+  namespace: monitoring
+  labels:
+    release: homelab
+spec:
+  jobName: OpenWRT
+  metricsPath: /metrics
+  scrapeInterval: 15s
+  staticConfigs:
+    - targets:
+      - "192.168.10.1:9100"
