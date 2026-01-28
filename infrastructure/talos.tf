@@ -19,7 +19,7 @@ module "talos" {
     name            = "homelab-k8s"
     endpoint        = "192.168.20.115"
     gateway         = "192.168.20.1"
-    talos_version   = "v1.11.5"
+    talos_version   = var.talos_version
     proxmox_cluster = "homelab"
   }
 
