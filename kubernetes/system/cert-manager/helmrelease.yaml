@@ -25,5 +25,25 @@ spec:
     recreate: true
     force: true
   values:
+    resources:
+      requests:
+        cpu: 10m
+        memory: 100Mi
+      limits:
+        memory: 100Mi
     crds:
       enabled: true
+    cainjector:
+      resources:
+        requests:
+          cpu: 10m
+          memory: 100Mi
+        limits:
+          memory: 100Mi
+    webhook:
+      resources:
+        requests:
+          cpu: 10m
+          memory: 100Mi
+        limits:
+          memory: 100Mi

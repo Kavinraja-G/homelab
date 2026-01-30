@@ -49,6 +49,12 @@ spec:
         spec:
           containers:
             - name: grafana
+              resources:
+                requests:
+                  cpu: 10m
+                  memory: 200Mi
+                limits:
+                  memory: 500Mi
               readinessProbe:
                 failureThreshold: 3
               env:

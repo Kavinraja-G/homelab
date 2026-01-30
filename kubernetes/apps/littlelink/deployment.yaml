@@ -65,6 +65,12 @@ spec:
               value: https://imkavin.dev,https://imkavin.dev/blog/
           image: ghcr.io/timothystewart6/littlelink-server:latest
           name: littlelink-server
+          resources:
+            requests:
+              cpu: 10m
+              memory: 100Mi
+            limits:
+              memory: 150Mi
           ports:
             - containerPort: 3000
               protocol: TCP

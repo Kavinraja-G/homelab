@@ -35,10 +35,10 @@ spec:
         retention: 14d
         resources:
           requests:
-            memory: 1Gi
-            cpu: 50m
+            memory: 1324Mi
+            cpu: 100m
           limits:
-            memory: 2Gi
+            memory: 1500Mi
         nodeSelector:
           kubernetes.io/hostname: worker-01
         storageSpec:

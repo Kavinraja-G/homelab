@@ -21,6 +21,12 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 3000
+          resources:
+            requests:
+              cpu: 15m
+              memory: 700Mi
+            limits:
+              memory: 800Mi
           env:
             - name: MEILI_ADDR
               value: http://meilisearch:7700
