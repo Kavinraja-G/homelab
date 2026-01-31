@@ -6,6 +6,7 @@ resources:
   - ./prometheus/flux-ks.yaml
   - ./grafana/flux-ks.yaml
   - ./proxmox-csi/flux-ks.yaml
+  - ./pangolin/flux-ks.yaml
+  - ./cnpg-system
   - ./reloader
   - ./metrics-server
-  # - ./pangolin

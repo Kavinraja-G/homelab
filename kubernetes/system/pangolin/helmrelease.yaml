@@ -12,7 +12,6 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: pangolin
-        namespace: flux-system
   install:
     remediation:
       retries: -1
