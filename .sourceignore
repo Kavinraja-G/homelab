@@ -3,4 +3,5 @@
 !/kubernetes/apps/
 !/kubernetes/clusters/
 !/kubernetes/system/
+!/kubernetes/core-dependencies/
 !/kubernetes/charts/

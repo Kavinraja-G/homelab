@@ -1,11 +1,7 @@
 resources:
-  - ./kubeseal
-  - ./external-secrets
   - ./proxmox-csi
-  - ./cert-manager
   - ./prometheus
   - ./grafana
-  - ./cilium
   - ./reloader
   - ./metrics-server
-  - ./pangolin
+  # - ./pangolin
