@@ -1,5 +1,5 @@
 variable "talos_version" {
-  default     = "v1.11.5"
+  default     = "v1.12.2"
   description = "Talos Image Version"
 }
 
