@@ -12,7 +12,6 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: sealed-secrets
-        namespace: flux-system
   install:
     remediation:
       retries: -1

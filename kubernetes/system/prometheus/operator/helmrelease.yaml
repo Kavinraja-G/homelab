@@ -10,7 +10,6 @@ spec:
   chartRef:
     kind: OCIRepository
     name: kube-prometheus-stack
-    namespace: flux-system
   values:
     crds:
       enabled: true
