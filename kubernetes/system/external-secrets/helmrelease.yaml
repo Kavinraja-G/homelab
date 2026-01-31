@@ -30,7 +30,7 @@ spec:
     processClusterExternalSecret: false
     processPushSecret: false
     processClusterPushSecret: false
-    installCRDs: false
+    installCRDs: true
     certController:
       create: false
     resources:

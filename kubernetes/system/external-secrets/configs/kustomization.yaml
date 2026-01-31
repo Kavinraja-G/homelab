@@ -1,7 +1,4 @@
 resources:
-  - repos.yaml
-  - crds.yaml
-  - helmrelease.yaml
   - certs.yaml
   - secret.yaml
   - secret-store.yaml

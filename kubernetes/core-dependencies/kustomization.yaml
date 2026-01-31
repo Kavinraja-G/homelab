@@ -1,5 +1,0 @@
-resources:
-  - ./kubeseal
-  - ./external-secrets
-  - ./cert-manager
-  - ./cilium-configs

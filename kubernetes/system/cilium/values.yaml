@@ -1,3 +1,4 @@
+## Refered from OpenTofu during cluster bootstrap
 cluster:
   name: homelab
   id: 1

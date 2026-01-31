@@ -1,7 +1,11 @@
 resources:
-  - ./proxmox-csi
+  - ./kubeseal/flux-ks.yaml
+  - ./external-secrets/flux-ks.yaml
+  - ./cert-manager/flux-ks.yaml
+  - ./cilium
   - ./prometheus
   - ./grafana
+  - ./proxmox-csi
   - ./reloader
   - ./metrics-server
   # - ./pangolin
