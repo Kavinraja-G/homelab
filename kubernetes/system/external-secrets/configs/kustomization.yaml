@@ -1,4 +1,3 @@
 resources:
   - certs.yaml
-  - secret.yaml
   - secret-store.yaml

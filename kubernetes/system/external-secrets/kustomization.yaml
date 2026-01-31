@@ -1,3 +1,4 @@
 resources:
   - repos.yaml
+  - secret.yaml
   - helmrelease.yaml
