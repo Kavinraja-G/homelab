@@ -1,6 +1,6 @@
 resources:
   - ./littlelink
-  # - ./karakeep
+  - ./karakeep
   - ./glance
   - ./postgres
   - ./blinko
