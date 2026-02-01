@@ -3,4 +3,3 @@ resources:
   - ./karakeep
   - ./glance
   - ./postgres
-  - ./blinko
