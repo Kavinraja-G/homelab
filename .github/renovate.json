@@ -1,0 +1,25 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "timezone": "Asia/Kolkata",
+  "dependencyDashboardTitle": "Renovate Dashboard",
+  "extends": [
+    "github>kavinraja-g/homelab//.github/renovate/labels",
+    "github>kavinraja-g/homelab//.github/renovate/semanticCommits",
+    "github>kavinraja-g/homelab//.github/renovate/groups"
+  ],
+  "flux": {
+    "managerFilePatterns": [
+      "/^kubernetes/.+\\.ya?ml$/"
+    ]
+  },
+  "helm-values": {
+    "fileMatch": [
+      "kubernetes/.+/helmrelease\\.yaml$"
+    ]
+  },
+  "kubernetes": {
+    "managerFilePatterns": [
+      "/^kubernetes/.+\\.ya?ml$/"
+    ]
+  }
+}
