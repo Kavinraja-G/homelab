@@ -1,0 +1,26 @@
+---
+## Area
+- name: area/github
+  color: "0366d6"
+- name: area/kubernetes
+  color: "326ce5"
+- name: area/infrastructure
+  color: "ff9800"
+- name: area/vps
+  color: "a259e6"
+- name: area/ansible
+  color: "e34c26"
+## Renovate Labels
+- name: renovate/container
+  color: "20bfa9"
+- name: renovate/helm
+  color: "5c6bc0"
+# Semantic Types
+- name: type/digest
+  color: "ffe066"
+- name: type/patch
+  color: "8bc34a"
+- name: type/minor
+  color: "ffc107"
+- name: type/major
+  color: "ff5722"

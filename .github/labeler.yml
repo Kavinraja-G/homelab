@@ -1,0 +1,16 @@
+---
+area/github:
+  - changed-files:
+      - any-glob-to-any-file: .github/**/*
+area/kubernetes:
+  - changed-files:
+      - any-glob-to-any-file: kubernetes/**/*
+area/infrastructure:
+  - changed-files:
+      - any-glob-to-any-file: infrastructure/**/*
+area/vps:
+  - changed-files:
+      - any-glob-to-any-file: vps/**/*
+area/ansible:
+  - changed-files:
+      - any-glob-to-any-file: ansible/**/*
