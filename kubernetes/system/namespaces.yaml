@@ -10,6 +10,7 @@ namespaces:
   - name: glance
   - name: cnpg-system
   - name: postgres
+  - name: kagent
   - name: monitoring
     labels:
       pod-security.kubernetes.io/enforce: privileged

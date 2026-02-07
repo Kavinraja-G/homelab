@@ -7,6 +7,7 @@ resources:
   - ./grafana/flux-ks.yaml
   - ./proxmox-csi/flux-ks.yaml
   - ./pangolin/flux-ks.yaml
+  - ./kagent/flux-ks.yaml
   - ./cnpg-system
   - ./reloader
   - ./metrics-server

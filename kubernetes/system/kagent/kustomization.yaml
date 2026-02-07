@@ -1,0 +1,4 @@
+resources:
+  - secrets.yaml
+  - oci-repository.yaml
+  - helmrelease.yaml
