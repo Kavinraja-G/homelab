@@ -42,7 +42,12 @@ spec:
     kmcp:
       enabled: false # Review this later if needed
     providers:
-      default: openAI
+      default: anthropic
+      anthropic:
+        provider: Anthropic
+        model: "claude-3-5-haiku-20241022"
+        apiKeySecretRef: kagent-secrets
+        apiKeySecretKey: ANTHROPIC_API_KEY
       openAI:
         provider: OpenAI
         model: "gpt-4.1-mini"
