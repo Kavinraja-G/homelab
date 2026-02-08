@@ -18,3 +18,23 @@ spec:
     name: flux-system
     namespace: flux-system
   wait: false
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: renovate-pr-impact-agent
+  namespace: kagent
+spec:
+  dependsOn:
+    - name: kagent
+      namespace: kagent
+  targetNamespace: kagent
+  interval: 30m
+  timeout: 5m
+  path: ./kubernetes/system/kagent/renovate-pr-impact-agent
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+    namespace: flux-system
+  wait: false
