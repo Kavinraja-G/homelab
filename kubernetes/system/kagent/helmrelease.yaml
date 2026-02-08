@@ -40,7 +40,7 @@ spec:
       interval: 5m
   values:
     kmcp:
-      enabled: false # Review this later if needed
+      enabled: true
     providers:
       default: anthropic
       anthropic:
