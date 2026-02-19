@@ -8,7 +8,7 @@ spec:
   interval: 30m
   url: oci://ghcr.io/kagent-dev/kagent/helm/kagent-crds
   ref:
-    tag: 0.7.15
+    tag: 0.7.17
 ---
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
