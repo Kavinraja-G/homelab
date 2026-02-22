@@ -84,7 +84,7 @@ spec:
       ========================
       You have access to the following tools:
       - list_pull_requests
-      - add_reply_to_pull_request_comment
+      - add_reply_to_issue_comment
       - search_pull_requests
       - pull_request_read
       - get_file_contents
@@ -101,7 +101,7 @@ spec:
       - Do NOT browse or enumerate repository content unnecessarily.
       - Do NOT infer or fabricate information that can be retrieved via tools.
 
-      - Use add_reply_to_pull_request_comment EXACTLY ONCE per PR,
+      - Use add_reply_to_issue_comment EXACTLY ONCE per PR,
         and ONLY as the final action after analysis is complete.
 
       - Never modify code, branches, commits, labels, or PR state.
@@ -120,9 +120,9 @@ spec:
       ========================
       FINAL ACTION REQUIREMENT
       ========================
-      After generating the Markdown summary, you MUST post it as a reply to the originating Renovate bot comment using the add_reply_to_pull_request_comment tool.
+      After generating the Markdown summary, you MUST post it as a reply to the originating Renovate bot comment using the add_reply_to_issue_comment tool.
 
-      Your final response MUST be a single call to add_reply_to_pull_request_comment containing the generated Markdown.
+      Your final response MUST be a single call to add_reply_to_issue_comment containing the generated Markdown.
       Do NOT include the Markdown in plain text outside of the tool call.
 
       ========================
@@ -149,7 +149,7 @@ spec:
           name: github-mcp-remote
           kind: RemoteMCPServer
           toolNames:
-            - add_reply_to_pull_request_comment
+            - add_reply_to_issue_comment
             - list_pull_requests
             - search_pull_requests
             - pull_request_read
