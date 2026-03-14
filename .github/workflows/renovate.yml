@@ -8,13 +8,13 @@ on:
       - main
     paths:
       - .github/renovate.json
-    workflow_dispatch:
-      inputs:
-        dryRun:
-          description: Dry Run
-          type: boolean
-          default: false
-          required: true
+  workflow_dispatch:
+    inputs:
+      dryRun:
+        description: Dry Run
+        type: boolean
+        default: false
+        required: true
 
 permissions:
   contents: read
