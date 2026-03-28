@@ -804,7 +804,8 @@ spec:
                   strategy:
                     description: |-
                       Strategy defines the install strategy to use for this HelmRelease.
-                      Defaults to 'RemediateOnFailure'.
+                      Defaults to 'RemediateOnFailure', or 'RetryOnFailure' when the
+                      DefaultToRetryOnFailure feature gate is enabled.
                     properties:
                       name:
                         description: Name of the install strategy.
@@ -1325,7 +1326,8 @@ spec:
                   strategy:
                     description: |-
                       Strategy defines the upgrade strategy to use for this HelmRelease.
-                      Defaults to 'RemediateOnFailure'.
+                      Defaults to 'RemediateOnFailure', or 'RetryOnFailure' when the
+                      DefaultToRetryOnFailure feature gate is enabled.
                     properties:
                       name:
                         description: Name of the upgrade strategy.
@@ -1806,7 +1808,7 @@ spec:
             resourceFieldRef:
               containerName: manager
               resource: limits.memory
-        image: ghcr.io/fluxcd/helm-controller:v1.5.1
+        image: ghcr.io/fluxcd/helm-controller:v1.5.2
         imagePullPolicy: IfNotPresent
         livenessProbe:
           httpGet:
@@ -2626,7 +2628,7 @@ spec:
             resourceFieldRef:
               containerName: manager
               resource: limits.memory
-        image: ghcr.io/fluxcd/kustomize-controller:v1.8.1
+        image: ghcr.io/fluxcd/kustomize-controller:v1.8.2
         imagePullPolicy: IfNotPresent
         livenessProbe:
           httpGet:
@@ -4063,7 +4065,7 @@ spec:
             resourceFieldRef:
               containerName: manager
               resource: limits.memory
-        image: ghcr.io/fluxcd/notification-controller:v1.8.1
+        image: ghcr.io/fluxcd/notification-controller:v1.8.2
         imagePullPolicy: IfNotPresent
         livenessProbe:
           httpGet:
@@ -6370,7 +6372,7 @@ spec:
             resourceFieldRef:
               containerName: manager
               resource: limits.memory
-        image: ghcr.io/fluxcd/source-controller:v1.8.0
+        image: ghcr.io/fluxcd/source-controller:v1.8.1
         imagePullPolicy: IfNotPresent
         livenessProbe:
           httpGet:
