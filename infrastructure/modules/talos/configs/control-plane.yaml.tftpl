@@ -1,6 +1,4 @@
 machine:
-  network:
-    hostname: ${hostname}
   nodeLabels:
     topology.kubernetes.io/region: ${cluster_name}
     topology.kubernetes.io/zone: ${node_name}
@@ -33,3 +31,9 @@ cluster:
   - name: cilium-bootstrap
     contents: |
       ${indent(6, cilium_install)}
+
+---
+apiVersion: v1alpha1
+kind: HostnameConfig
+hostname: ${hostname}
+auto: off

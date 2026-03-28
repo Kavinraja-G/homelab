@@ -1,9 +1,13 @@
 machine:
-  network:
-    hostname: ${hostname}
   nodeLabels:
     topology.kubernetes.io/region: ${cluster_name}
     topology.kubernetes.io/zone: ${node_name}
   kubelet:
     extraArgs:
       rotate-server-certificates: true
+
+---
+apiVersion: v1alpha1
+kind: HostnameConfig
+hostname: ${hostname}
+auto: off
