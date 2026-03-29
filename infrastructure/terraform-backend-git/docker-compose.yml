@@ -1,0 +1,20 @@
+services:
+  terraform-backend-git:
+    image: ghcr.io/plumber-cd/terraform-backend-git:v0.1.11
+    container_name: terraform-backend-git
+    restart: unless-stopped
+    command: ["terraform-backend-git", "--address=:6061", "--access-logs"]
+    ports:
+      - "6061:6061"
+    environment:
+      TF_BACKEND_GIT_GIT_REPOSITORY: ${TF_BACKEND_GIT_GIT_REPOSITORY}
+      TF_BACKEND_GIT_GIT_REF: ${TF_BACKEND_GIT_GIT_REF:-main}
+      TF_BACKEND_GIT_GIT_STATE: ${TF_BACKEND_GIT_GIT_STATE:-homelab/main-infra-state.json}
+      SSH_AUTH_SOCK: /ssh-agent
+      SSH_PRIVATE_KEY: ${SSH_PRIVATE_KEY:-}
+      StrictHostKeyChecking: ${StrictHostKeyChecking:-no}
+      TF_BACKEND_HTTP_ENCRYPTION_PROVIDER: ${TF_BACKEND_HTTP_ENCRYPTION_PROVIDER:-}
+      TF_BACKEND_HTTP_SOPS_AGE_RECIPIENTS: ${TF_BACKEND_HTTP_SOPS_AGE_RECIPIENTS:-}
+    volumes:
+      - /run/host-services/ssh-auth.sock:/ssh-agent
+      - ${HOST_SOPS_AGE_KEYS_FILE}:/root/.config/sops/age/keys.txt:ro

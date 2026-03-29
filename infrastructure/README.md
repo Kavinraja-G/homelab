@@ -10,6 +10,10 @@ Deploys the following components:
 3. Bootstraps K8s cluster with FluxCD components and intializes the [monorepo](../kubernetes/clusters/homelab/).
 4. Injects Bitwarden Secrets.
 5. Terraform backend uses [Git](https://github.com/plumber-cd/terraform-backend-git).
+
+## Remote State Backend (terraform-backend-git)
+
+Backend setup is documented in [terraform-backend-git/README.md](terraform-backend-git/README.md).
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
 
