@@ -22,7 +22,7 @@ terraform {
     }
     github = {
       source  = "hashicorp/github"
-      version = "6.11.1"
+      version = "6.12.1"
     }
     bitwarden = {
       source  = "maxlaverse/bitwarden"
