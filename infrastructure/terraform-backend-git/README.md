@@ -20,6 +20,7 @@ TF_BACKEND_GIT_GIT_STATE=homelab/main-infra-state.json
 TF_BACKEND_HTTP_ENCRYPTION_PROVIDER=sops
 HOST_SOPS_AGE_KEYS_FILE=/Users/kavin/.config/sops/age/keys.txt
 TF_BACKEND_HTTP_SOPS_AGE_RECIPIENTS=<age public key>
+HOST_SSH_PRIVATE_KEY_PATH=/Users/kavin/.ssh/id_ed25519
 ```
 
 ## Start Backend Service

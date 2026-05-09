@@ -70,7 +70,8 @@ Backend setup is documented in [terraform-backend-git/README.md](terraform-backe
 | <a name="input_github"></a> [github](#input\_github) | GitHub Repository Information | ```object({ org = string repository = string })``` | n/a | yes |
 | <a name="input_github_token"></a> [github\_token](#input\_github\_token) | GitHub Token | `any` | n/a | yes |
 | <a name="input_proxmox"></a> [proxmox](#input\_proxmox) | Proxmox Cluster configs | ```object({ name = string cluster_name = string endpoint = string insecure = bool username = string api_token = string })``` | n/a | yes |
-| <a name="input_talos_version"></a> [talos\_version](#input\_talos\_version) | Talos Image Version | `string` | `"v1.11.5"` | no |
+| <a name="input_talos_version"></a> [talos\_version](#input\_talos\_version) | Talos Image Version | `string` | `"v1.12.2"` | no |
+| <a name="input_kubernetes_version"></a> [kubernetes\_version](#input\_kubernetes\_version) | Kubernetes Version | `string` | `"v1.35.0"` | no |
 
 ## Outputs
 

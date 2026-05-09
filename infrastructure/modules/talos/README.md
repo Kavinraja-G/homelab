@@ -32,7 +32,7 @@ OpenTofu module to deploy Talos based K8s cluster in Proxmox VEs.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_cilium"></a> [cilium](#input\_cilium) | Cilium configuration | ```object({ values = string install = string })``` | n/a | yes |
-| <a name="input_cluster"></a> [cluster](#input\_cluster) | Cluster configuration | ```object({ name = string endpoint = string gateway = string talos_version = string proxmox_cluster = string })``` | n/a | yes |
+| <a name="input_cluster"></a> [cluster](#input\_cluster) | Cluster configuration | ```object({ name = string endpoint = string gateway = string talos_version = string kubernetes_version = string proxmox_cluster = string })``` | n/a | yes |
 | <a name="input_image"></a> [image](#input\_image) | Talos image configuration | ```object({ factory_url = optional(string, "https://factory.talos.dev") schematic = string version = string update_schematic = optional(string) update_version = optional(string) arch = optional(string, "amd64") platform = optional(string, "nocloud") proxmox_datastore = optional(string, "local") })``` | n/a | yes |
 | <a name="input_nodes"></a> [nodes](#input\_nodes) | Configuration for cluster nodes | ```map(object({ host_node = string machine_type = string datastore_id = optional(string, "local-zfs") ip = string mac_address = string vm_id = number cpu = number ram_dedicated = number update = optional(bool, false) igpu = optional(bool, false) }))``` | n/a | yes |
 

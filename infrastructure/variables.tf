@@ -3,6 +3,11 @@ variable "talos_version" {
   description = "Talos Image Version"
 }
 
+variable "kubernetes_version" {
+  default     = "v1.35.0"
+  description = "Kubernetes Version"
+}
+
 variable "proxmox" {
   type = object({
     name         = string

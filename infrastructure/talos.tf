@@ -16,11 +16,12 @@ module "talos" {
   }
 
   cluster = {
-    name            = "homelab-k8s"
-    endpoint        = "192.168.20.115"
-    gateway         = "192.168.20.1"
-    talos_version   = var.talos_version
-    proxmox_cluster = "homelab"
+    name               = "homelab-k8s"
+    endpoint           = "192.168.20.115"
+    gateway            = "192.168.20.1"
+    talos_version      = var.talos_version
+    kubernetes_version = var.kubernetes_version
+    proxmox_cluster    = "homelab"
   }
 
   nodes = {
