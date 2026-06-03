@@ -33,7 +33,7 @@ jobs:
           app-id: ${{ secrets.RENOVATE_BOT_APP_ID }}
 
       - name: Checkout
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v6.0.3
         with:
           persist-credentials: false
           token: ${{ steps.get_token.outputs.token }}
