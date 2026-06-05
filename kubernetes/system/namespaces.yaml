@@ -8,7 +8,6 @@ namespaces:
   - name: pangolin
   - name: karakeep
   - name: glance
-  - name: cnpg-system
   - name: kagent
   - name: monitoring
     labels:

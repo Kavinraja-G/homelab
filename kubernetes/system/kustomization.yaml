@@ -9,6 +9,5 @@ resources:
   - ./pangolin/flux-ks.yaml
   - ./kagent/flux-ks.yaml
   - ./fluxcd-configs/flux-ks.yaml
-  - ./cnpg-system
   - ./reloader
   - ./metrics-server
