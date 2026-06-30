@@ -18,7 +18,7 @@ terraform {
     }
     flux = {
       source  = "fluxcd/flux"
-      version = "1.8.3"
+      version = "1.9.0"
     }
     github = {
       source  = "hashicorp/github"
