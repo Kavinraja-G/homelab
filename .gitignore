@@ -5,3 +5,4 @@ venv
 *outputs/
 *test/
 .bitwarden
+talos/
