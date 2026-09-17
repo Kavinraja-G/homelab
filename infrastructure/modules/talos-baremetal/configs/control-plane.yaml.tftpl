@@ -1,4 +1,14 @@
 machine:
+  install:
+    image: ${installer_image}
+    disk: ${install_disk}
+    wipe: true
+  network:
+    interfaces:
+      - interface: ${network_interface}
+        dhcp: true
+        vip:
+          ip: ${cluster_vip}
   nodeLabels:
     topology.kubernetes.io/region: ${cluster_name}
     topology.kubernetes.io/zone: ${node_name}
@@ -17,20 +27,19 @@ cluster:
     - https://raw.githubusercontent.com/alex1989hu/kubelet-serving-cert-approver/main/deploy/standalone-install.yaml
     - https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
   inlineManifests:
-  - name: cilium-values
-    contents: |
-      ---
-      apiVersion: v1
-      kind: ConfigMap
-      metadata:
-        name: cilium-values
-        namespace: kube-system
-      data:
-        values.yaml: |-
-          ${indent(10, cilium_values)}
-  - name: cilium-bootstrap
-    contents: |
-      ${indent(6, cilium_install)}
+    - name: cilium-values
+      contents: |
+        apiVersion: v1
+        kind: ConfigMap
+        metadata:
+          name: cilium-values
+          namespace: kube-system
+        data:
+          values.yaml: |-
+            ${indent(12, cilium_values)}
+    - name: cilium-bootstrap
+      contents: |
+        ${indent(8, cilium_bootstrap)}
 
 ---
 apiVersion: v1alpha1

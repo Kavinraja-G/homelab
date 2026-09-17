@@ -5,15 +5,10 @@ All my homelab infrastructure are deployed via [OpenTofu](https://opentofu.org).
 ## Overview
 
 Deploys the following components:
-1. **Proxmox VMs** in the host nodes to create VMs for K8s.
-2. [Talos](https://docs.siderolabs.com/talos) based K8s cluster on the VMs.
-3. Bootstraps K8s cluster with FluxCD components and intializes the [monorepo](../kubernetes/clusters/homelab/).
-4. Injects Bitwarden Secrets.
-5. Terraform backend uses [Git](https://github.com/plumber-cd/terraform-backend-git).
+1. [Talos](https://docs.siderolabs.com/talos) based K8s cluster on existing bare-metal nodes.
+2. Bootstraps K8s cluster with FluxCD components and intializes the [monorepo](../kubernetes/clusters/homelab/).
+3. Injects Bitwarden Secrets.
 
-## Remote State Backend (terraform-backend-git)
-
-Backend setup is documented in [terraform-backend-git/README.md](terraform-backend-git/README.md).
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
 
@@ -23,8 +18,6 @@ Backend setup is documented in [terraform-backend-git/README.md](terraform-backe
 | <a name="requirement_flux"></a> [flux](#requirement\_flux) | 1.7.6 |
 | <a name="requirement_github"></a> [github](#requirement\_github) | 6.9.0 |
 | <a name="requirement_kubernetes"></a> [kubernetes](#requirement\_kubernetes) | 3.0.1 |
-| <a name="requirement_proxmox"></a> [proxmox](#requirement\_proxmox) | 0.89.1 |
-| <a name="requirement_restapi"></a> [restapi](#requirement\_restapi) | 2.0.1 |
 | <a name="requirement_talos"></a> [talos](#requirement\_talos) | 0.9.0 |
 
 ## Providers
@@ -35,14 +28,13 @@ Backend setup is documented in [terraform-backend-git/README.md](terraform-backe
 | <a name="provider_flux"></a> [flux](#provider\_flux) | 1.7.6 |
 | <a name="provider_github"></a> [github](#provider\_github) | 6.9.0 |
 | <a name="provider_local"></a> [local](#provider\_local) | 2.6.1 |
-| <a name="provider_proxmox"></a> [proxmox](#provider\_proxmox) | 0.89.1 |
 | <a name="provider_tls"></a> [tls](#provider\_tls) | 4.1.0 |
 
 ## Modules
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_talos"></a> [talos](#module\_talos) | ./modules/talos | n/a |
+| <a name="module_talos"></a> [talos](#module\_talos) | ./modules/talos-baremetal | n/a |
 
 ## Resources
 
@@ -55,11 +47,6 @@ Backend setup is documented in [terraform-backend-git/README.md](terraform-backe
 | [local_file.kube_config](https://registry.terraform.io/providers/hashicorp/local/latest/docs/resources/file) | resource |
 | [local_file.machine_configs](https://registry.terraform.io/providers/hashicorp/local/latest/docs/resources/file) | resource |
 | [local_file.talos_config](https://registry.terraform.io/providers/hashicorp/local/latest/docs/resources/file) | resource |
-| [proxmox_virtual_environment_role.csi](https://registry.terraform.io/providers/bpg/proxmox/0.89.1/docs/resources/virtual_environment_role) | resource |
-| [proxmox_virtual_environment_user.api_ro_user](https://registry.terraform.io/providers/bpg/proxmox/0.89.1/docs/resources/virtual_environment_user) | resource |
-| [proxmox_virtual_environment_user.kubernetes_csi](https://registry.terraform.io/providers/bpg/proxmox/0.89.1/docs/resources/virtual_environment_user) | resource |
-| [proxmox_virtual_environment_user_token.api_ro_user_token](https://registry.terraform.io/providers/bpg/proxmox/0.89.1/docs/resources/virtual_environment_user_token) | resource |
-| [proxmox_virtual_environment_user_token.kubernetes_csi_user_token](https://registry.terraform.io/providers/bpg/proxmox/0.89.1/docs/resources/virtual_environment_user_token) | resource |
 | [tls_private_key.flux](https://registry.terraform.io/providers/hashicorp/tls/latest/docs/resources/private_key) | resource |
 
 ## Inputs
@@ -69,9 +56,7 @@ Backend setup is documented in [terraform-backend-git/README.md](terraform-backe
 | <a name="input_bitwarden_access_token"></a> [bitwarden\_access\_token](#input\_bitwarden\_access\_token) | Bitwarden Secrets Manager Machine account access token | `any` | n/a | yes |
 | <a name="input_github"></a> [github](#input\_github) | GitHub Repository Information | ```object({ org = string repository = string })``` | n/a | yes |
 | <a name="input_github_token"></a> [github\_token](#input\_github\_token) | GitHub Token | `any` | n/a | yes |
-| <a name="input_proxmox"></a> [proxmox](#input\_proxmox) | Proxmox Cluster configs | ```object({ name = string cluster_name = string endpoint = string insecure = bool username = string api_token = string })``` | n/a | yes |
-| <a name="input_talos_version"></a> [talos\_version](#input\_talos\_version) | Talos Image Version | `string` | `"v1.12.2"` | no |
-| <a name="input_kubernetes_version"></a> [kubernetes\_version](#input\_kubernetes\_version) | Kubernetes Version | `string` | `"v1.35.0"` | no |
+| <a name="input_kubernetes_version"></a> [kubernetes\_version](#input\_kubernetes\_version) | Kubernetes Version | `string` | `"v1.37.0"` | no |
 
 ## Outputs
 

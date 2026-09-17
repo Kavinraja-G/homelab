@@ -1,20 +1,35 @@
-resource "tls_private_key" "flux" {
-  algorithm   = "ECDSA"
-  ecdsa_curve = "P256"
-}
+module "flux_operator_bootstrap" {
+  depends_on = [module.talos]
 
-resource "github_repository_deploy_key" "flux" {
-  title      = "Flux"
-  repository = var.github.repository
-  key        = tls_private_key.flux.public_key_openssh
-  read_only  = "false"
-}
+  source  = "controlplaneio-fluxcd/flux-operator-bootstrap/kubernetes"
+  version = "0.8.0"
 
-resource "flux_bootstrap_git" "flux" {
-  depends_on = [github_repository_deploy_key.flux, module.talos]
+  revision = 1
 
-  version                = "v2.8.2"
-  embedded_manifests     = true
-  kustomization_override = file("${path.module}/manifests/flux-kustomization-patch.yaml")
-  path                   = "kubernetes/clusters/homelab"
+  gitops_resources = {
+    instance_yaml = file("${path.module}/../kubernetes/clusters/homelab/flux-system/flux-instance.yaml")
+  }
+
+  managed_resources = {
+    secrets_yaml = <<-YAML
+      apiVersion: v1
+      kind: Secret
+      metadata:
+        name: flux-system
+        namespace: flux-system
+      type: Opaque
+      stringData:
+        username: git
+        password: ${var.flux_git_token}
+    YAML
+  }
+
+  job = {
+    host_network = true
+    tolerations = [{
+      key      = "node-role.kubernetes.io/control-plane"
+      operator = "Exists"
+      effect   = "NoSchedule"
+    }]
+  }
 }

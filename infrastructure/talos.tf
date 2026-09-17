@@ -1,69 +1,42 @@
 module "talos" {
-  source = "./modules/talos"
+  source = "./modules/talos-baremetal"
 
-  providers = {
-    proxmox = proxmox
-  }
-
-  image = {
-    version   = var.talos_version
-    schematic = file("${path.module}/modules/talos/configs/image-schematic.yaml")
+  cluster = {
+    name                = "homelab-k8s"
+    endpoint            = "192.168.20.205"
+    talos_version       = "v1.14.0"
+    installer_image     = "factory.talos.dev/metal-installer/376567988ad370138ad8b2698212367b8edcb69b5fd68c80be1f2ec7d603b4ba:v1.14.0"
+    kubernetes_version  = var.kubernetes_version
+    control_plane_nodes = ["192.168.20.200", "192.168.20.201", "192.168.20.203"]
+    worker_nodes        = []
   }
 
   cilium = {
-    install = file("${path.module}/modules/talos/manifests/cilium.yaml")
+    version = "1.18.4"
     values  = file("${path.module}/../kubernetes/system/cilium/values.yaml")
   }
 
-  cluster = {
-    name               = "homelab-k8s"
-    endpoint           = "192.168.20.115"
-    gateway            = "192.168.20.1"
-    talos_version      = var.talos_version
-    kubernetes_version = var.kubernetes_version
-    proxmox_cluster    = "homelab"
-  }
-
   nodes = {
-    "cp-node-01" = {
-      host_node     = "cp-node-01"
-      machine_type  = "controlplane"
-      ip            = "192.168.20.115"
-      mac_address   = "BC:24:11:2E:C7:01"
-      vm_id         = 701
-      datastore_id  = "local-lvm"
-      cpu           = 4
-      ram_dedicated = 8192
+    "cp-01" = {
+      ip                = "192.168.20.200"
+      machine_type      = "controlplane"
+      hostname          = "homelab-k8s-cp01"
+      install_disk      = "/dev/sda"
+      network_interface = "eno1"
     }
-    "cp-node-02" = {
-      host_node     = "cp-node-02"
-      machine_type  = "controlplane"
-      ip            = "192.168.20.125"
-      mac_address   = "BC:24:11:2E:C7:02"
-      vm_id         = 702
-      datastore_id  = "local-lvm"
-      cpu           = 4
-      ram_dedicated = 8192
+    "cp-02" = {
+      ip                = "192.168.20.201"
+      machine_type      = "controlplane"
+      hostname          = "homelab-k8s-cp02"
+      install_disk      = "/dev/nvme0n1"
+      network_interface = "eno1"
     }
-    "cp-node-03" = {
-      host_node     = "node-01"
-      machine_type  = "controlplane"
-      ip            = "192.168.20.135"
-      mac_address   = "BC:24:11:2E:C7:03"
-      vm_id         = 703
-      datastore_id  = "local-lvm"
-      cpu           = 2
-      ram_dedicated = 4096
-    }
-    "worker-01" = {
-      host_node     = "node-01"
-      machine_type  = "worker"
-      ip            = "192.168.20.140"
-      mac_address   = "BC:24:11:2E:C8:01"
-      vm_id         = 801
-      datastore_id  = "local-lvm"
-      cpu           = 2
-      ram_dedicated = 12288
+    "cp-03" = {
+      ip                = "192.168.20.203"
+      machine_type      = "controlplane"
+      hostname          = "homelab-k8s-cp03"
+      install_disk      = "/dev/sda"
+      network_interface = "eno1"
     }
   }
 }

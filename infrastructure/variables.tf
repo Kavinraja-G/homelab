@@ -1,40 +1,15 @@
-variable "talos_version" {
-  default     = "v1.12.2"
-  description = "Talos Image Version"
-}
-
 variable "kubernetes_version" {
-  default     = "v1.35.0"
+  default     = "v1.37.0"
   description = "Kubernetes Version"
-}
-
-variable "proxmox" {
-  type = object({
-    name         = string
-    cluster_name = string
-    endpoint     = string
-    insecure     = bool
-    username     = string
-    api_token    = string
-  })
-  description = "Proxmox Cluster configs"
-  sensitive   = true
-}
-
-variable "github" {
-  type = object({
-    org        = string
-    repository = string
-  })
-  description = "GitHub Repository Information"
-}
-
-variable "github_token" {
-  description = "GitHub Token"
-  sensitive   = true
 }
 
 variable "bitwarden_access_token" {
   description = "Bitwarden Secrets Manager Machine account access token"
   sensitive   = true
+}
+
+variable "flux_git_token" {
+  description = "GitHub token used by Flux to read the repository over HTTPS"
+  sensitive   = true
+  type        = string
 }
