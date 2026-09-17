@@ -1,4 +1,12 @@
 machine:
+  install:
+    image: ${installer_image}
+    disk: ${install_disk}
+    wipe: true
+  network:
+    interfaces:
+      - interface: ${network_interface}
+        dhcp: true
   nodeLabels:
     topology.kubernetes.io/region: ${cluster_name}
     topology.kubernetes.io/zone: ${node_name}

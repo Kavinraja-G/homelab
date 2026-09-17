@@ -1,0 +1,20 @@
+apiVersion: fluxcd.controlplane.io/v1
+kind: FluxInstance
+metadata:
+  name: flux
+  namespace: flux-system
+spec:
+  distribution:
+    version: "2.9.x"
+    registry: "ghcr.io/fluxcd"
+  components:
+    - source-controller
+    - kustomize-controller
+    - helm-controller
+    - notification-controller
+  sync:
+    kind: GitRepository
+    url: https://github.com/Kavinraja-G/homelab.git
+    ref: refs/heads/main
+    path: ./kubernetes/clusters/homelab
+    pullSecret: flux-system

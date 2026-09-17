@@ -3,4 +3,4 @@
 All generic tofu modules goes in here.
 
 ### Modules
-- [Talos](./talos/) - module to deploy Proxmox VMs + Talos Cluster configuration.
+- [Talos bare metal](./talos-baremetal/) - manages Talos configuration and kubeconfig for existing physical nodes.

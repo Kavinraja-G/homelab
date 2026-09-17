@@ -1,13 +1,13 @@
 resources:
   - ./cilium
-  - ./kubeseal/flux-ks.yaml
-  - ./external-secrets/flux-ks.yaml
-  - ./cert-manager/flux-ks.yaml
-  - ./prometheus/flux-ks.yaml
-  - ./grafana/flux-ks.yaml
-  - ./proxmox-csi/flux-ks.yaml
-  - ./pangolin/flux-ks.yaml
-  - ./kagent/flux-ks.yaml
+  # - ./kubeseal/flux-ks.yaml
+  # - ./external-secrets/flux-ks.yaml
+  # - ./cert-manager/flux-ks.yaml
+  # - ./prometheus/flux-ks.yaml
+  # - ./grafana/flux-ks.yaml
+  # - ./proxmox-csi/flux-ks.yaml
+  # - ./pangolin/flux-ks.yaml
+  # - ./kagent/flux-ks.yaml
   - ./fluxcd-configs/flux-ks.yaml
   - ./reloader
-  - ./metrics-server
+  # - ./metrics-server
