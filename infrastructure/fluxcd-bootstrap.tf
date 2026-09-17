@@ -25,7 +25,6 @@ module "flux_operator_bootstrap" {
   }
 
   job = {
-    host_network = true
     tolerations = [{
       key      = "node-role.kubernetes.io/control-plane"
       operator = "Exists"
