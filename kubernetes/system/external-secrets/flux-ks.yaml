@@ -22,8 +22,6 @@ metadata:
   name: external-secrets-configs
   namespace: external-secrets
 spec:
-  dependsOn:
-    - name: external-secrets
   targetNamespace: external-secrets
   interval: 30m
   timeout: 5m
