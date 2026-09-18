@@ -3,7 +3,6 @@ namespaces:
   - name: littlelink
   - name: reloader
   - name: kubeseal
-  - name: proxmox-csi
   - name: external-secrets
   - name: pangolin
   - name: karakeep

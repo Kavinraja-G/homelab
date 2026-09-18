@@ -6,7 +6,7 @@ metadata:
   name: littlelink-server
   namespace: littlelink
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: littlelink-server
@@ -68,9 +68,9 @@ spec:
           resources:
             requests:
               cpu: 10m
-              memory: 100Mi
+              memory: 50Mi
             limits:
-              memory: 150Mi
+              memory: 100Mi
           ports:
             - containerPort: 3000
               protocol: TCP

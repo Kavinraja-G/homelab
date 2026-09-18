@@ -1,4 +1,4 @@
-resources: []
-  # - ./littlelink
+resources:
+  - ./littlelink
   # - ./karakeep
   # - ./glance
