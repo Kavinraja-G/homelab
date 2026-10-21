@@ -2,7 +2,7 @@ module "flux_operator_bootstrap" {
   depends_on = [module.talos]
 
   source  = "controlplaneio-fluxcd/flux-operator-bootstrap/kubernetes"
-  version = "0.8.0"
+  version = "0.9.0"
 
   revision = 1
 
