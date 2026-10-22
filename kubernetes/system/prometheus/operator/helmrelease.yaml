@@ -39,7 +39,7 @@ spec:
           limits:
             memory: 1500Mi
         nodeSelector:
-          kubernetes.io/hostname: worker-01
+          kubernetes.io/hostname: homelab-k8s-cp01
         storageSpec:
           volumeClaimTemplate:
             spec:
