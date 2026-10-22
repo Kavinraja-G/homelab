@@ -39,3 +39,5 @@ spec:
           enabled: false
     loki:
       enabled: false
+    alloy:
+      enabled: false
