@@ -5,6 +5,8 @@ namespaces:
   - name: kubeseal
   - name: external-secrets
   - name: openebs
+    labels:
+      pod-security.kubernetes.io/enforce: privileged
   - name: pangolin
   - name: karakeep
   - name: glance
