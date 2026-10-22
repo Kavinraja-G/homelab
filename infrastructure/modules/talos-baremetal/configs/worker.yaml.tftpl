@@ -1,4 +1,9 @@
 machine:
+  files:
+    - path: /var/openebs/local/.keep
+      op: create
+      permissions: 0o755
+      content: ""
   install:
     image: ${installer_image}
     disk: ${install_disk}
@@ -13,6 +18,14 @@ machine:
   kubelet:
     extraArgs:
       rotate-server-certificates: true
+    extraMounts:
+      - destination: /var/openebs/local
+        source: /var/openebs/local
+        type: bind
+        options:
+          - bind
+          - rshared
+          - rw
 
 ---
 apiVersion: v1alpha1
