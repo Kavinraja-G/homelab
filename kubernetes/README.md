@@ -7,7 +7,7 @@ This directory contains all Kubernetes manifests, Helm charts, and Kustomize ove
 - [apps/](./apps/) - User-facing applications and workloads (e.g., AdGuardHome, Glance, Karakeep, LittleLink)
 - [charts/](./charts/) - Custom ad-hoc Helm charts.
 - [clusters/](./clusters/) - Cluster-specific overlays and Flux sync manifests.
-- [system/](./system/) - Core platform services and infrastructure (e.g., Cert-Manager, Cilium, External Secrets, Kubeseal, Metrics Server, Pangolin, Proxmox CSI, Reloader)
+- [system/](./system/) - Core platform services and infrastructure (e.g., Cert-Manager, Cilium, External Secrets, Kubeseal, Metrics Server, OpenEBS, Pangolin, Reloader)
 
 ## Usage
 

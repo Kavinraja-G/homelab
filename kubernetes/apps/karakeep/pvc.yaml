@@ -4,7 +4,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: data-pvc
 spec:
-  storageClassName: proxmox-csi-retain
+  storageClassName: openebs-hostpath
   accessModes:
     - ReadWriteOnce
   resources:
@@ -16,7 +16,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: meilisearch-pvc
 spec:
-  storageClassName: proxmox-csi-retain
+  storageClassName: openebs-hostpath
   accessModes:
     - ReadWriteOnce
   resources:

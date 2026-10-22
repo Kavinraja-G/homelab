@@ -4,6 +4,7 @@ namespaces:
   - name: reloader
   - name: kubeseal
   - name: external-secrets
+  - name: openebs
   - name: pangolin
   - name: karakeep
   - name: glance

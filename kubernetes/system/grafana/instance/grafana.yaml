@@ -106,4 +106,4 @@ spec:
       resources:
         requests:
           storage: 5Gi
-      storageClassName: proxmox-csi-retain
+      storageClassName: openebs-hostpath

@@ -3,6 +3,7 @@ resources:
   - ./kubeseal/flux-ks.yaml
   - ./external-secrets/flux-ks.yaml
   - ./cert-manager/flux-ks.yaml
+  - ./openebs
   # - ./prometheus/flux-ks.yaml
   # - ./grafana/flux-ks.yaml
   # - ./pangolin/flux-ks.yaml

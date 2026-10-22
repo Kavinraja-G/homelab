@@ -1,0 +1,41 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: openebs
+  namespace: openebs
+spec:
+  interval: 1h
+  dependsOn:
+    - name: namespace-bootstrap
+      namespace: flux-system
+  chart:
+    spec:
+      chart: openebs
+      version: 4.6.2
+      sourceRef:
+        kind: HelmRepository
+        name: openebs
+        namespace: flux-system
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  values:
+    engines:
+      local:
+        hostpath:
+          enabled: true
+        lvm:
+          enabled: false
+        zfs:
+          enabled: false
+        rawfile:
+          enabled: false
+      replicated:
+        mayastor:
+          enabled: false
+    loki:
+      enabled: false
