@@ -8,7 +8,6 @@ namespaces:
     labels:
       pod-security.kubernetes.io/enforce: privileged
   - name: pangolin
-  - name: karakeep
   - name: glance
   - name: kagent
   - name: monitoring
