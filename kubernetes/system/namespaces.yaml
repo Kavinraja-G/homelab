@@ -8,6 +8,10 @@ namespaces:
     labels:
       pod-security.kubernetes.io/enforce: privileged
   - name: pangolin
+    labels:
+      pod-security.kubernetes.io/enforce: baseline
+      pod-security.kubernetes.io/audit: restricted
+      pod-security.kubernetes.io/warn: restricted
   - name: glance
   - name: kagent
   - name: monitoring
