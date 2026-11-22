@@ -8,5 +8,4 @@ resources:
   - ./pangolin/flux-ks.yaml
   - ./fluxcd-configs/flux-ks.yaml
   - ./reloader
-  # - ./grafana/flux-ks.yaml
-  # - ./kagent/flux-ks.yaml
+  - ./grafana/flux-ks.yaml
