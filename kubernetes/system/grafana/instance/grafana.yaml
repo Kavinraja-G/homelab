@@ -13,20 +13,9 @@ spec:
       mode: "console"
     auth:
       disable_login_form: "false"
-      oauth_allow_insecure_email_lookup: "true"
-    auth.generic_oauth:
-      enabled: "true"
-      name: "Pocket ID"
-      client_id: homelab-grafana
-      client_secret: ${GF_OIDC_CLIENT_SECRET}
-      scopes: "openid email profile"
-      skip_org_role_sync: "true"
-      auth_url: "${GF_AUTH_URL}/authorize"
-      token_url: "${GF_AUTH_URL}/api/oidc/token"
-      api_url: ""
     security:
       admin_user: "${GF_SECURITY_ADMIN_USER}"
-      admin_password: secret
+      admin_password: "${GF_SECURITY_ADMIN_PASSWORD}"
     news:
       news_feed_enabled: "false"
     server:
@@ -68,16 +57,6 @@ spec:
                     secretKeyRef:
                       name: grafana-secrets
                       key: GF_DOMAIN
-                - name: GF_AUTH_URL
-                  valueFrom:
-                    secretKeyRef:
-                      name: grafana-secrets
-                      key: GF_AUTH_URL
-                - name: GF_OIDC_CLIENT_SECRET
-                  valueFrom:
-                    secretKeyRef:
-                      name: grafana-secrets
-                      key: GF_OIDC_CLIENT_SECRET
                 - name: GF_SECURITY_ADMIN_PASSWORD
                   valueFrom:
                     secretKeyRef:
