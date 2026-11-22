@@ -1,23 +1,58 @@
 # HomeLab
-My personal homelab where I experiment, learn, and break things -- covering networking, Kubernetes, self-hosted applications and cloud-native tooling!
 
-### 📖 Overview
+My personal homelab for learning and testing infrastructure, networking, Kubernetes, GitOps, observability, and self-hosted services.
 
-Below is a high-level snapshot of the technology stack powering my homelab. This setup will continue to evolve as I expand hardware and capabilities - see each section for more details.
+## Overview
 
-| Layer            | Technology / Tooling               | Purpose / Role                                   |
-|------------------|------------------------------------|--------------------------------------------------|
-| Provisioning     | [OpenTofu](https://opentofu.org/), Talos           | Automate bare-metal Kubernetes cluster provisioning      |
-| Network          | VLANs, OpenWRT, Managed Switch     | Segmented, secure home network                   |
-| Cluster OS       | [Talos](https://docs.siderolabs.com)                              | Immutable, secure Kubernetes OS                  |
-| GitOps           | [FluxCD](https://fluxcd.io/)                             | Declarative cluster management from Git          |
-| Platform Services| [Cert-Manager](https://cert-manager.io/), [Cilium](https://cilium.io/), [Metrics Server](https://github.com/kubernetes-sigs/metrics-server), [Kubeseal](https://github.com/bitnami-labs/sealed-secrets), [Pangolin](https://docs.pangolin.net/self-host) | Core system services managed via Helm/Kustomize  |
-| Apps             | [AdGuard](https://adguard.com/en/adguard-home/overview.html), [Glance](https://github.com/glanceapp/glance), [Karakeep](https://github.com/karakeep-app/karakeep/tree/main), [LittleLink](https://github.com/timothystewart6/littlelink-server), etc. | User workloads, each with configs and overlays   |
-| Secrets          | [Bitwarden](https://bitwarden.com/), [SOPS](https://github.com/getsops/sops), [External Secrets](https://github.com/external-secrets/external-secrets)  | Secure secret management and distribution        |
-| Monitoring | [Prometheus](https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack), [Grafana](https://github.com/grafana/grafana-operator/tree/master), [Uptime Kuma](https://github.com/louislam/uptime-kuma) | All observability and alerting stuffs |
+This repository is a monorepo for the complete homelab stack:
 
-#### Cluster Design
-This homelab runs **Talos Linux directly on three physical Lenovo ThinkCentre M700 Tiny nodes**. The nodes form a highly available Kubernetes control plane and are managed as bare-metal infrastructure with OpenTofu. The setup is intentionally flexible and may evolve over time as new tools, patterns, and industry trends emerge, making the lab a continuously adapting learning environment!
+- Bare-metal Kubernetes on three Talos nodes
+- Declarative cluster provisioning with OpenTofu
+- FluxCD reconciliation for Kubernetes resources
+- Cilium networking and load balancing
+- Bitwarden Secrets Manager through External Secrets
+- Prometheus and Grafana for observability
+- Docker Compose workloads on VPS hosts
+- Ansible for repeatable VPS setup and application deployment
+
+| Layer | Technology | Purpose |
+| --- | --- | --- |
+| Provisioning | [OpenTofu](https://opentofu.org/), [Talos Linux](https://docs.siderolabs.com) | Bare-metal cluster provisioning and node configuration |
+| Network | VLANs, OpenWrt, TP-Link Omada switch | Segmentation and routing |
+| Kubernetes networking | [Cilium](https://cilium.io/) | CNI, load-balancer IPAM, L2 announcements, and Hubble |
+| GitOps | [FluxCD](https://fluxcd.io/) | Reconciles cluster state from this repository |
+| Platform services | Cert-Manager, External Secrets, Kubeseal, OpenEBS, Reloader, Pangolin Newt | Certificates, secrets, storage, and supporting services |
+| Monitoring | [Prometheus](https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack), [Grafana Operator](https://github.com/grafana/grafana-operator) | Metrics collection, dashboards, and alerting |
+| Cluster workloads | LittleLink | Kubernetes-hosted application workload |
+| VPS workloads | Glance Agent, Pocket ID, Uptime Kuma | Docker Compose services deployed outside the cluster |
+| Secrets | [Bitwarden Secrets Manager](https://bitwarden.com/) and [External Secrets](https://external-secrets.io/) | Generates Kubernetes secrets from centrally managed values |
+
+## Repository Layout
+
+| Path | Contents |
+| --- | --- |
+| [infrastructure/](infrastructure/) | OpenTofu configuration for Talos, Flux bootstrap, and supporting resources |
+| [talos/](talos/) | Talos machine configuration and patches |
+| [kubernetes/](kubernetes/) | Flux entry points, platform services, and application manifests |
+| [ansible/](ansible/) | VPS host configuration and Docker Compose deployment |
+| [vps/](vps/) | Docker Compose stacks and Bitwarden-backed secret definitions |
+
+## Management Flow
+
+```mermaid
+flowchart LR
+    Git[Git repository] -->|GitRepository| Flux[FluxCD]
+    Flux -->|Kustomize / Helm| Cluster[Kubernetes cluster]
+    Tofu[OpenTofu] -->|Talos and bootstrap| Cluster
+    BW[Bitwarden Secrets Manager] -->|External Secrets| Cluster
+    Ansible[Ansible] -->|Docker Compose| VPS[VPS hosts]
+```
+
+Changes to Kubernetes manifests are reconciled by Flux. Cluster resources should therefore be defined under [kubernetes/](kubernetes/) and committed to Git rather than edited directly on the cluster.
+
+## Cluster Design
+
+This homelab runs Talos Linux directly on three physical Lenovo ThinkCentre M700 Tiny nodes. The nodes form a highly available Kubernetes control plane and are managed as bare-metal infrastructure with OpenTofu.
 
 ```mermaid
 flowchart TB
@@ -81,14 +116,14 @@ flowchart
 	style n3 color:#000000,stroke-width:1px,stroke:#0097B2,stroke-dasharray:5 5
 ```
 
-#### vLAN Overview
+#### VLAN Overview
 
 | vLAN | Purpose           | Description                   |
 | ---- | ----------------- | ----------------------------- |
-| 10   | User / Management | Workstations and admin access |
-| 20   | Homelab           | Talos bare-metal Kubernetes   |
-| 30   | Media             | Media services and devices    |
-| 40   | Guest             | Isolated guest access         |
+| 10 | User / Management | Workstations and administration |
+| 20 | Homelab | Talos bare-metal Kubernetes |
+| 30 | Media | Media services and devices |
+| 40 | Guest | Isolated guest access |
 
 
 ### ⚙ Hardware Inventory
